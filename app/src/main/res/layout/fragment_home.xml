@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/main_gl_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_title" />
+
+
+    <EditText
+        android:id="@+id/edt_home_dollname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x18"
+        android:layout_marginTop="@dimen/x28"
+        android:background="#04ffffff"
+        android:gravity="center"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:maxLength="10"
+        android:padding="@dimen/x8"
+        android:singleLine="true"
+        android:text="Dameon"
+        android:textColor="@color/colorBlackLevel1"
+        android:textSize="@dimen/x18"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/img_home_file"
+        android:layout_width="@dimen/x36"
+        android:layout_height="@dimen/x36"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/x28"
+        android:layout_marginRight="@dimen/x18"
+        android:background="@drawable/icon_change_face" />
+
+    <ImageView
+        android:id="@+id/img_home_camera"
+        android:layout_width="@dimen/x36"
+        android:layout_height="@dimen/x36"
+        android:layout_below="@id/img_home_file"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_marginRight="@dimen/x18"
+        android:background="@drawable/icon_change_face_camera" />
+
+
+    <TextView
+        android:id="@+id/tv_home_downloading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="downloading..."
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_home_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="载入中..."
+        android:textColor="@color/colorGray" />
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="文件同步出错！点击重试~"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/home_func"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/tv_home_figure"
+            android:layout_width="@dimen/x58"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x16"
+            android:background="@drawable/ra_transparent_btn"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/x8"
+            android:paddingBottom="@dimen/x8"
+            android:paddingLeft="@dimen/x16"
+            android:paddingRight="@dimen/x16">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x30"
+                android:src="@drawable/icon_visualize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="形象"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_home_story"
+            android:layout_width="@dimen/x58"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ra_transparent_btn"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/x8"
+            android:paddingBottom="@dimen/x8"
+            android:paddingLeft="@dimen/x16"
+            android:paddingRight="@dimen/x16">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x30"
+                android:src="@drawable/icon_history" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="故事"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_home_phiz"
+            android:layout_width="@dimen/x58"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ra_transparent_btn"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/x8"
+            android:paddingBottom="@dimen/x8"
+            android:paddingLeft="@dimen/x16"
+            android:paddingRight="@dimen/x16">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x30"
+                android:src="@drawable/icon_emjoy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="表情"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_home_vr"
+            android:layout_width="@dimen/x58"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ra_transparent_btn"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/x8"
+            android:paddingBottom="@dimen/x8"
+            android:paddingLeft="@dimen/x16"
+            android:paddingRight="@dimen/x16">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x30"
+                android:src="@drawable/icon_vr" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="VR"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_home_commonweal"
+            android:layout_width="@dimen/x58"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ra_transparent_btn"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/x8"
+            android:paddingBottom="@dimen/x8"
+            android:paddingLeft="@dimen/x16"
+            android:paddingRight="@dimen/x16">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x30"
+                android:src="@drawable/icon_benefit" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="公益"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x10" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:id="@id/id_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.sdk.views.listview.PullListView
+            android:id="@id/id_content"
+            android:divider="@color/colorSlightGray"
+            android:background="@color/colorSlightGray"
+            android:dividerHeight="@dimen/x4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="服务器连接出错！点击重试~"
+        android:visibility="gone" />
+</RelativeLayout>

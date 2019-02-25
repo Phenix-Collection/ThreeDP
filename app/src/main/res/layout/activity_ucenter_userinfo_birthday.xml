@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/id_activity"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="@color/colorWhite" >
+    </View>
+
+    <RelativeLayout
+        android:id="@+id/activity_ucenter_myfans_back_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:layout_below="@id/id_activity"
+        android:background="@color/colorWhite" >
+
+        <LinearLayout
+            android:id="@id/id_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/ra_transparent_btn"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x8"
+            android:paddingRight="@dimen/x8" >
+
+            <ImageView
+                android:layout_width="@dimen/x16"
+                android:layout_height="@dimen/x16"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/cancel"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x14" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="@dimen/x8"
+            android:paddingRight="@dimen/x8"
+            android:text="设置生日"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/x14" />
+
+        <TextView
+            android:id="@id/id_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ra_transparent_btn"
+            android:gravity="center"
+            android:paddingLeft="@dimen/x8"
+            android:paddingRight="@dimen/x8"
+            android:text="完成"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/x14" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:layout_below="@id/activity_ucenter_myfans_back_rl"
+        android:layout_marginTop="@dimen/x8"
+        android:background="#ffffff" >
+
+        <TextView
+            android:id="@id/id_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/x8"
+            android:text="生日　　　2017-01-20"
+            android:textColor="#666666"
+            android:textColorHint="#666666"
+            android:textSize="@dimen/x12" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:text="在下面的控件中选择您的生日"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/x8" >
+
+            <com.sdk.views.wheelview.WheelView
+                android:id="@+id/id_year"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <com.sdk.views.wheelview.WheelView
+                android:id="@+id/id_month"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <com.sdk.views.wheelview.WheelView
+                android:id="@+id/id_day"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="1dp"
+            android:background="#999999" />
+    </LinearLayout>
+
+</RelativeLayout>

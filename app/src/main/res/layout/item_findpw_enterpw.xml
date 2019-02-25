@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:centerText="@string/title_findpw"
+        app:textColor="@color/colorGray"
+        app:leftIcon="@drawable/icon_back" />
+
+    <View
+        android:background="@color/colorThinBlack"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/id_menu"
+        android:layout_height="0.5dp" />
+
+    <RelativeLayout
+        android:id="@+id/r3"
+        android:layout_width="@dimen/x240"
+        android:layout_height="@dimen/x34"
+        android:layout_below="@+id/id_menu"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x110"
+        android:background="@drawable/rl_edt_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/edt_findpw_enterpw_newpw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rl_edt_bg"
+            android:gravity="center_vertical"
+            android:hint="请输入您的新密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/x6"
+            android:singleLine="true"
+            android:textColorHint="@color/colorHintGray"
+            android:textSize="@dimen/x14" />
+        
+        <ImageView
+            android:id="@+id/img_findpw_enterpw_newpw_look"
+            android:layout_width="@dimen/x16"
+            android:layout_height="@dimen/x16"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x9"
+            android:background="@drawable/icon_look"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/r4"
+        android:layout_width="@dimen/x240"
+        android:layout_height="@dimen/x34"
+        android:layout_below="@+id/r3"
+        android:layout_alignLeft="@+id/r3"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x15"
+        android:background="@drawable/rl_edt_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/edt_findpw_enterpw_againpw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rl_edt_bg"
+            android:gravity="center_vertical"
+            android:hint="请确认您的新密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/x6"
+            android:singleLine="true"
+            android:textColorHint="@color/colorHintGray"
+            android:textSize="@dimen/x14" />
+
+
+        <ImageView
+            android:id="@+id/img_findpw_enterpw_againpw_look"
+            android:layout_width="@dimen/x16"
+            android:layout_height="@dimen/x16"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x9"
+            android:background="@drawable/icon_look"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_findpw_enterpw_go"
+        android:layout_width="@dimen/x222"
+        android:layout_height="@dimen/x34"
+        android:layout_below="@+id/r4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x30"
+        android:background="@drawable/r8_deepskyblue_btn"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x14" />
+
+</RelativeLayout>

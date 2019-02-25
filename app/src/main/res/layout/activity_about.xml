@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSlightGray"
+    android:orientation="vertical">
+
+    <com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:background="@color/colorWhite"
+        app:centerText="@string/title_about"
+        app:leftIcon="@drawable/icon_back"
+        app:leftText="@string/action_back"
+        app:textColor="@color/colorBlack" />
+
+    <View
+        android:id="@id/id_solid"
+        android:layout_below="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorThinBlack" />
+
+
+    <TextView
+        android:id="@+id/activity_ucenter_setting_about_copyright_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/x6"
+        android:layout_marginTop="@dimen/x2"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/x8"
+        android:paddingRight="@dimen/x8"
+        android:singleLine="true"
+        android:text="©Right; 2008-2018 | Vivwe, Inc. All Rights Re"
+        android:textColor="#999999"
+        android:textSize="@dimen/x10" />
+
+    <TextView
+        android:id="@+id/activity_ucenter_setting_about_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/activity_ucenter_setting_about_copyright_tv"
+        android:gravity="center_horizontal"
+        android:text="@string/prompt_copyright"
+        android:textColor="#999999"
+        android:textSize="@dimen/x10" />
+
+    <ImageView
+        android:id="@id/id_logo"
+        android:layout_width="@dimen/x60"
+        android:layout_height="@dimen/x60"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/x4"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@id/id_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_logo"
+        android:layout_marginTop="@dimen/x8"
+        android:gravity="center_horizontal"
+        android:text="@string/prompt_version_name"
+        android:textColor="#999999"
+        android:textSize="@dimen/x12" />
+
+</RelativeLayout>

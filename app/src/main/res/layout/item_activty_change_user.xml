@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x59"
+    android:background="@drawable/ra_white_btn">
+
+    <com.sdk.views.imageview.RoundImageView
+        android:id="@id/img_head"
+        android:layout_width="@dimen/x44"
+        android:layout_height="@dimen/x44"
+        android:layout_marginLeft="@dimen/x9"
+        android:layout_marginTop="@dimen/x9"
+        android:src="@drawable/myfragment_head" />
+
+    <TextView
+        android:id="@+id/tv_realname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x12"
+        android:layout_marginTop="@dimen/x13"
+        android:layout_toRightOf="@id/img_head"
+        android:text="尚影"
+        android:textColor="@color/colorGray"
+        android:textSize="@dimen/x12" />
+
+    <TextView
+        android:id="@id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_realname"
+        android:layout_marginLeft="@dimen/x12"
+        android:layout_marginTop="@dimen/x2"
+        android:layout_toRightOf="@id/img_head"
+        android:text="158645823526"
+        android:textColor="@color/colorGrayLevel2"
+        android:textSize="@dimen/x12" />
+
+    <ImageView
+        android:id="@+id/img_right"
+        android:layout_width="@dimen/x16"
+        android:layout_height="@dimen/x16"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x18"
+        android:background="@drawable/icon_right"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:background="@color/colorSlightGray" />
+
+
+</RelativeLayout>

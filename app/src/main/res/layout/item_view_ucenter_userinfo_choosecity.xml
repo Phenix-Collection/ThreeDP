@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/activity_ucenter_userinfo_choosecity_top_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x40"
+        android:background="@drawable/ra_solid_cdcdcd_b_ffffff" >
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x12"
+            android:text="选择城市"
+            android:textColor="#666666"
+            android:textSize="@dimen/x12" />
+
+        <ImageView
+            android:id="@+id/item_view_ucenter_userinfo_choosecity_go_iv"
+            android:layout_width="@dimen/x42"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/x12"
+            android:src="@drawable/icon_go_black"
+            android:textColor="#666666" />
+    </RelativeLayout>
+
+</RelativeLayout>

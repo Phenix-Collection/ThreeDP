@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
+
+        <ImageButton
+            android:id="@+id/ibtn_back"
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42"
+            android:background="@drawable/ra_white_btn"
+            android:padding="@dimen/x8"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="帮助与反馈"
+            android:textColor="#191919"
+            android:textSize="@dimen/x14"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_contact_information_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_menu"
+        android:padding="@dimen/x12"
+        android:text="联系方式"
+        android:textColor="#A6A6A6" />
+
+    <LinearLayout
+        android:id="@+id/ll_contact_information_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_contact_information_label"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/x12">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_name_label"
+                android:layout_width="@dimen/x56"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="姓名"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x12" />
+
+            <EditText
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_name_label"
+                android:background="@null"
+                android:hint="选填，便于我们与您联系"
+                android:padding="@dimen/x12"
+                android:textColor="#A6A6A6"
+                android:textSize="@dimen/x12" />
+
+        </RelativeLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorThinBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_phone_label"
+                android:layout_width="@dimen/x56"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="联系电话"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x12" />
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_phone_label"
+                android:background="@null"
+                android:hint="选填，便于我们与您联系"
+                android:padding="@dimen/x12"
+                android:textColor="#A6A6A6"
+                android:textSize="@dimen/x12" />
+
+        </RelativeLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorThinBlack" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_detail_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_contact_information_label"
+        android:padding="@dimen/x12"
+        android:text="请描述具体问题"
+        android:textColor="#A6A6A6" />
+
+    <EditText
+        android:id="@+id/edt_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x86"
+        android:layout_below="@id/tv_detail_label"
+        android:background="@color/colorWhite"
+        android:gravity="left|top"
+        android:hint="请填写10字以上的问题描述，以便我们提供更好的服务。"
+        android:padding="@dimen/x12"
+        android:textColor="#A6A6A6"
+        android:textSize="@dimen/x12" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/edt_content"
+        android:padding="@dimen/x24">
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x36"
+            android:layout_centerInParent="true"
+            android:background="@drawable/r60_black_btn"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x14" />
+
+    </RelativeLayout>
+
+    <!--<com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:background="@color/colorWhite"
+        app:centerText="@string/title_about"
+        app:leftIcon="@drawable/icon_back"
+        app:leftText="@string/action_back"
+        app:textColor="@color/colorBlack" />-->
+
+
+    <!--<WebView
+        android:id="@+id/id_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorSlightGray"
+        android:layout_below="@id/id_solid" />-->
+
+    <!--<com.sdk.views.refresh.PageRefreshView
+        android:id="@+id/id_loading_prv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_solid" />-->
+
+</RelativeLayout>

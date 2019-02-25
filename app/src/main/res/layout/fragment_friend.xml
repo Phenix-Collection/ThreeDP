@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/x8"
+        android:padding="@dimen/x16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="互动"
+            android:textColor="@color/colorBlackLevel1"
+            android:textSize="@dimen/x20"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_friend_list"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x22"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/r60_btn"
+            android:text="好友列表"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x10" />
+
+    </RelativeLayout>
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <com.chat.easeui.widget.EaseConversationList
+            android:id="@id/id_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+
+</LinearLayout>

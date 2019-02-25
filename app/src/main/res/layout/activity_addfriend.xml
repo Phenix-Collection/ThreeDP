@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSlightGray"
+    android:orientation="vertical">
+
+    <com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:background="@color/colorWhite"
+        app:centerText="@string/title_add_friend"
+        app:leftIcon="@drawable/icon_back"
+        app:leftText="@string/action_back"
+        app:rightText="@string/button_send"
+        app:rightTextColor="@color/colorBlue"
+        app:textColor="@color/colorBlack" />
+
+    <View
+        android:id="@id/id_solid"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/id_menu"
+        android:background="@color/colorThinBlack" />
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_solid">
+
+        <com.sdk.views.listview.PullRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@id/id_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginTop="@dimen/x10"
+                android:text="发送一条消息，等待对方验证通过"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x12" />
+
+            <EditText
+                android:id="@id/id_detail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x38"
+                android:layout_below="@id/id_tip"
+                android:layout_marginTop="@dimen/x4"
+                android:background="@color/colorWhite"
+                android:padding="@dimen/x10"
+                android:text="我是super_link"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x13" />
+
+            <ImageButton
+                android:id="@id/id_clear"
+                android:layout_width="@dimen/x38"
+                android:layout_height="@dimen/x38"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ra_white_btn"
+                android:layout_marginTop="@dimen/x4"
+                android:layout_below="@id/id_tip"
+                android:padding="@dimen/x8"
+                android:src="@drawable/ease_search_clear" />
+
+        </com.sdk.views.listview.PullRelativeLayout>
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+</RelativeLayout>

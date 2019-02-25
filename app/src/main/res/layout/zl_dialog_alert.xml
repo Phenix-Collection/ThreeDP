@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:background="@color/transparent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/x300"
+        android:layout_height="wrap_content"
+        android:background="@drawable/r8_white_normal"
+        android:orientation="vertical"
+        android:padding="@dimen/x8">
+
+        <RelativeLayout
+            android:id="@+id/dialog_content_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#a8ffffff"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dialog_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x12"
+                android:paddingLeft="@dimen/x4"
+                android:paddingRight="@dimen/x4"
+                android:text="@string/prompt_system_tip"
+                android:textColor="#333333"
+                android:textSize="@dimen/x16"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dialog_message_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_title_tv"
+                android:paddingLeft="@dimen/x12"
+                android:paddingRight="@dimen/x12"
+                android:text="再连续登陆25天，就可以变身QQ达人。退出QQ可能会使你现有记录归零，确定退出？"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x14"
+
+                />
+
+            <EditText
+                android:id="@+id/dialog_message_zedt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_title_tv"
+                android:layout_marginLeft="@dimen/x12"
+                android:layout_marginRight="@dimen/x12"
+                android:gravity="left|top"
+                android:hint="请输入内容"
+                android:maxLength="120"
+                android:maxLines="4"
+                android:paddingBottom="@dimen/x8"
+                android:textColor="#cdcdcd"
+                android:textColorHint="#ababab"
+                android:textSize="@dimen/x12"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x12"
+            android:padding="@dimen/x8"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@id/id_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="@dimen/x4"
+                android:text="@string/action_test"
+                android:textColor="@color/colorPrimaryBlue"
+                android:textSize="@dimen/x14"/>
+
+            <Button
+                android:id="@id/id_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/x8"
+                android:padding="@dimen/x4"
+                android:text="@string/action_test"
+                android:textColor="@color/colorPrimaryBlue"
+                android:textSize="@dimen/x14"/>
+
+            <Button
+                android:id="@id/id_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/x8"
+                android:gravity="center"
+                android:padding="@dimen/x4"
+                android:text="@string/action_test"
+                android:textColor="@color/colorPrimaryBlue"
+                android:textSize="@dimen/x14"
+                android:visibility="visible"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

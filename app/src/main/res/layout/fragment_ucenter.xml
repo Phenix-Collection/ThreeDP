@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/x8"
+        android:padding="@dimen/x16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的信息"
+            android:textColor="@color/colorBlackLevel1"
+            android:textSize="@dimen/x20"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tx_change_user"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x22"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/r60_btn"
+            android:text="切换手机"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x10" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/x16"
+        android:background="@drawable/ra_white_btn">
+
+        <com.sdk.views.imageview.RoundImageView
+            android:id="@+id/img_head"
+            android:layout_width="@dimen/x44"
+            android:layout_height="@dimen/x44"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_login_head" />
+
+        <TextView
+            android:id="@id/id_uname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_marginTop="@dimen/x4"
+            android:layout_toRightOf="@+id/img_head"
+            android:singleLine="true"
+            android:text="Dameon"
+            android:textColor="@color/colorBlackLevel1"
+            android:textSize="@dimen/x12" />
+
+        <ImageView
+            android:id="@+id/iv_phone_icon"
+            android:src="@drawable/sign_phone"
+            android:padding="@dimen/x2"
+            android:layout_alignStart="@+id/id_uname"
+            android:layout_below="@+id/id_uname"
+            android:layout_marginTop="@dimen/x2"
+            android:layout_width="@dimen/x16"
+            android:layout_height="@dimen/x16" />
+        <TextView
+            android:id="@id/id_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_phone_icon"
+            android:layout_below="@+id/id_uname"
+            android:layout_marginTop="@dimen/x2"
+            android:singleLine="true"
+            android:text="18011707954"
+            android:textColor="#AFAFAF"
+            android:textSize="@dimen/x12" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:background="@color/colorThinBlack"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/x16"
+        android:layout_marginRight="@dimen/x16"
+        android:layout_height="1dp" />
+
+
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.sdk.views.listview.PullScrollView
+            android:background="#fffafafa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingLeft="@dimen/x12"
+                    android:paddingRight="@dimen/x12"
+                    android:visibility="gone">
+
+                    <View
+                        android:id="@+id/v1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorThinBlack" />
+
+                    <ImageView
+                        android:id="@+id/img_add"
+                        android:layout_width="@dimen/x18"
+                        android:layout_height="@dimen/x18"
+                        android:layout_below="@+id/v1"
+                        android:layout_marginBottom="@dimen/x11"
+                        android:layout_marginLeft="@dimen/x2"
+                        android:layout_marginTop="@dimen/x11"
+                        android:background="@drawable/jia"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/tx_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/v1"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:layout_marginTop="@dimen/x12"
+                        android:layout_toRightOf="@+id/img_add"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="添加或注册账号"
+                        android:textColor="@color/mainBlueNoc"
+                        android:textSize="@dimen/x12" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_setInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingTop="@dimen/x12"
+                    android:paddingBottom="@dimen/x12"
+                    android:paddingLeft="@dimen/x16"
+                    android:paddingRight="@dimen/x16">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
+                        android:src="@drawable/icon_ucenter_user" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x12"
+                        android:layout_toRightOf="@+id/img1"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="个人信息设置"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/x13" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon_right_arrow" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_changepw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingTop="@dimen/x12"
+                    android:paddingBottom="@dimen/x12"
+                    android:paddingLeft="@dimen/x16"
+                    android:paddingRight="@dimen/x16">
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
+                        android:src="@drawable/icon_ucenter_pwd" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x12"
+                        android:layout_toRightOf="@+id/img2"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="修改登录密码"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/x13" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon_right_arrow" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingTop="@dimen/x12"
+                    android:paddingBottom="@dimen/x12"
+                    android:paddingLeft="@dimen/x16"
+                    android:paddingRight="@dimen/x16">
+
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
+                        android:src="@drawable/icon_ucenter_help" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x12"
+                        android:layout_toRightOf="@+id/img3"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="帮助与反馈"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/x13" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon_right_arrow" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0.5dp"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingTop="@dimen/x12"
+                    android:paddingBottom="@dimen/x12"
+                    android:paddingLeft="@dimen/x16"
+                    android:paddingRight="@dimen/x16">
+
+                    <ImageView
+                        android:id="@+id/img4"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
+                        android:src="@drawable/icon_ucenter_msg" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x12"
+                        android:layout_toRightOf="@+id/img4"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="消息通知"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/x13" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon_right_arrow" />
+
+                    <TextView
+                        android:id="@+id/id_message_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x18"
+                        android:background="@drawable/ease_unread_count_bg"
+                        android:gravity="center"
+                        android:minHeight="@dimen/x16"
+                        android:minWidth="@dimen/x16"
+                        android:text="1"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/x10"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0.5dp"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingTop="@dimen/x12"
+                    android:paddingBottom="@dimen/x12"
+                    android:paddingLeft="@dimen/x16"
+                    android:paddingRight="@dimen/x16">
+
+                    <ImageView
+                        android:id="@+id/img5"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
+                        android:src="@drawable/icon_ucenter_update" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x12"
+                        android:layout_toRightOf="@+id/img5"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="版本更新"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/x13" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon_right_arrow" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_abount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0.5dp"
+                    android:background="@drawable/ra_white_btn"
+                    android:paddingTop="@dimen/x12"
+                    android:paddingBottom="@dimen/x12"
+                    android:paddingLeft="@dimen/x16"
+                    android:paddingRight="@dimen/x16">
+
+                    <ImageView
+                        android:id="@+id/img6"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
+                        android:src="@drawable/icon_ucenter_about" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x12"
+                        android:layout_toRightOf="@+id/img6"
+                        android:fontFamily="@fonts/PingFang Regular"
+                        android:text="关于生活故事"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/x13" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon_right_arrow" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </com.sdk.views.listview.PullScrollView>
+
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+
+</LinearLayout>

@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSlightGray" >
+
+    <LinearLayout
+        android:id="@+id/id_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x42" >
+
+            <LinearLayout
+                android:id="@id/id_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/ra_transparent_btn"
+                android:orientation="horizontal"
+                android:padding="@dimen/x8" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="返回"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:text="编辑图片"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x14" />
+
+            <TextView
+                android:id="@id/id_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ra_transparent_btn"
+                android:gravity="center"
+                android:paddingLeft="@dimen/x8"
+                android:paddingRight="@dimen/x8"
+                android:text="确定"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x14" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/activity_imagefile_edit_image_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/id_bottom"
+        android:layout_below="@id/id_activity"
+        android:background="#00000000"
+        android:contentDescription="描述"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_folder" >
+    </ImageView>
+
+    <RelativeLayout
+        android:id="@id/id_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:paddingBottom="@dimen/x8"
+        android:paddingTop="@dimen/x8" >
+
+        <ImageButton
+            android:id="@+id/activity_imagefile_edit_rotate_right_ibtn"
+            android:layout_width="@dimen/x32"
+            android:layout_height="@dimen/x32"
+            android:layout_marginLeft="@dimen/x38"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_rotate_right" />
+
+        <ImageButton
+            android:id="@+id/activity_imagefile_edit_rotate_left_ibtn"
+            android:layout_width="@dimen/x32"
+            android:layout_height="@dimen/x32"
+            android:layout_marginLeft="@dimen/x38"
+            android:layout_toRightOf="@id/activity_imagefile_edit_rotate_right_ibtn"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_rotate_left" />
+
+        <ImageButton
+            android:id="@+id/activity_imagefile_edit_fliplr_ibtn"
+            android:layout_width="@dimen/x32"
+            android:layout_height="@dimen/x32"
+            android:layout_marginLeft="@dimen/x38"
+            android:layout_toRightOf="@id/activity_imagefile_edit_rotate_left_ibtn"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_flipud" />
+
+        <ImageButton
+            android:id="@+id/activity_imagefile_edit_flipud_ibtn"
+            android:layout_width="@dimen/x32"
+            android:layout_height="@dimen/x32"
+            android:layout_marginLeft="@dimen/x38"
+            android:layout_toRightOf="@id/activity_imagefile_edit_fliplr_ibtn"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_fliplr" />
+    </RelativeLayout>
+
+</RelativeLayout>

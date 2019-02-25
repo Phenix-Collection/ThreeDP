@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSlightGray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/x8"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/x8"
+            android:paddingRight="@dimen/x8"
+            android:paddingTop="@dimen/x8">
+
+            <ImageView
+                android:id="@+id/img_head"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
+                android:layout_marginRight="@dimen/x8"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_login_head" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/img_head"
+                android:text="Hurin omar"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/x12" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_username"
+                android:layout_toRightOf="@id/img_head"
+                android:text="昨天 10:01"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x10" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/x8"
+            android:paddingRight="@dimen/x8"
+            android:paddingTop="@dimen/x2"
+            android:text="大学毕业那场说走就走的旅行"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/x13" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/x4"
+            android:layout_height="@dimen/x180">
+
+            <TextureView
+                android:id="@+id/textureView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/img_video"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x50"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/x8">
+
+                <ImageView
+                    android:id="@+id/img_like"
+                    android:layout_width="@dimen/x14"
+                    android:layout_height="@dimen/x14"
+                    android:src="@drawable/icon_like" />
+
+                <TextView
+                    android:id="@+id/tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="192"
+                    android:textColor="@color/colorTitleGray"
+                    android:textSize="@dimen/x10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/x8">
+
+                <ImageView
+                    android:layout_width="@dimen/x14"
+                    android:layout_height="@dimen/x14"
+                    android:src="@drawable/icon_104" />
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="192"
+                    android:textColor="@color/colorTitleGray"
+                    android:textSize="@dimen/x10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x50"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/x8">
+
+                <ImageView
+                    android:layout_width="@dimen/x14"
+                    android:layout_height="@dimen/x14"
+                    android:src="@drawable/icon_105" />
+
+                <TextView
+                    android:id="@+id/tv_eye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="192"
+                    android:textColor="@color/colorTitleGray"
+                    android:textSize="@dimen/x10" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

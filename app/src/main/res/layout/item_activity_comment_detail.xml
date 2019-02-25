@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_comment_reply"
+        android:layout_width="wrap_content"
+        android:text="清风明月：嗯，我觉得也是呢！"
+        android:padding="@dimen/x9"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+</RelativeLayout>

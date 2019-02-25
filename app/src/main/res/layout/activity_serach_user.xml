@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSlightGray"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@id/id_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@id/id_back"
+            android:layout_width="@dimen/x32"
+            android:layout_height="@dimen/x32"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/x8"
+            android:background="@drawable/ra_white_btn"
+            android:padding="@dimen/x2"
+            android:src="@drawable/back" />
+
+        <RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x30"
+            android:layout_below="@+id/id_menu"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/rl_edt_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center">
+
+            <EditText
+                android:id="@id/id_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rl_edt_bg"
+                android:gravity="center_vertical"
+                android:hint="请输入账号或昵称搜索"
+                android:padding="@dimen/x6"
+                android:singleLine="true"
+                android:textColorHint="@color/colorHintGray"
+                android:textSize="@dimen/x14" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@id/id_ok"
+            android:layout_width="@dimen/x54"
+            android:layout_height="@dimen/x28"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x8"
+            android:layout_marginRight="@dimen/x5"
+            android:background="@drawable/r8_deepskyblue_btn"
+            android:padding="@dimen/x4"
+            android:text="搜索"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x14" />
+    </LinearLayout>
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_top"
+        android:divider="@color/colorSlightGray">
+
+        <com.sdk.views.listview.PullListView
+            android:id="@id/id_content"
+            android:divider="@color/colorSlightGray"
+            android:dividerHeight="@dimen/x1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+
+
+</RelativeLayout>

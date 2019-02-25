@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/x22"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@id/id_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ra_white_btn"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/id_cutphoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ra_white_btn"
+            android:gravity="center"
+            android:padding="@dimen/x12"
+            android:singleLine="true"
+            android:text="手机拍照"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/x14" />
+
+        <View
+            android:id="@+id/id_item_solid"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorThinBlack" />
+
+        <TextView
+            android:id="@+id/id_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ra_white_btn"
+            android:gravity="center"
+            android:padding="@dimen/x12"
+            android:singleLine="true"
+            android:text="文件选择"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/x14" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@id/id_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x8"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:padding="@dimen/x12"
+        android:singleLine="true"
+        android:text="取消"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/x14" />
+
+
+</LinearLayout>

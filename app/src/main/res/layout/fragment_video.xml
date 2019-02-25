@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/x8"
+        android:padding="@dimen/x16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="社区"
+            android:textColor="@color/colorBlackLevel1"
+            android:textSize="@dimen/x20"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/rl_menu"
+        android:background="@color/colorThinBlack" />
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:id="@id/id_refresh"
+        android:layout_below="@+id/rl_menu"
+        android:background="#fffafafa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.sdk.views.listview.PullListView
+            android:id="@id/id_content"
+            android:divider="@null"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="服务器连接出错！点击重试~"
+        android:visibility="gone" />
+</RelativeLayout>

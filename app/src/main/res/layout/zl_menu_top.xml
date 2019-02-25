@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/x38"
+    android:paddingLeft="@dimen/x4"
+    android:paddingRight="@dimen/x4">
+
+
+
+    <LinearLayout
+        android:id="@id/id_left"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x38"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x4"
+        android:paddingRight="@dimen/x4"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@id/id_menu_left_icon"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@id/id_menu_left_label"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:gravity="center"
+            android:text="@string/action_back"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/x14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/id_center"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x38"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@id/id_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/prompt_test"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/x16"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x38"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@id/id_menu_right_label"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="@dimen/x4"
+            android:paddingRight="@dimen/x4"
+            android:text="@string/action_next"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x14"
+            />
+
+        <ImageView
+            android:id="@id/id_menu_right1_icon"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x36"
+            android:background="@null"
+            android:paddingLeft="@dimen/x4"
+            android:paddingRight="@dimen/x4"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_add"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@id/id_menu_right2_icon"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x36"
+            android:background="@null"
+            android:paddingLeft="@dimen/x4"
+            android:paddingRight="@dimen/x4"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_add"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@id/id_menu_right3_icon"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x36"
+            android:background="@null"
+            android:paddingLeft="@dimen/x4"
+            android:paddingRight="@dimen/x4"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_add"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

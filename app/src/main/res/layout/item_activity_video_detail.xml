@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_comment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ra_white_btn">
+
+    <com.tdp.main.views.MySpannableTextView
+        android:id="@+id/tv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/x9"
+        android:text="这个视频很精彩啊！"
+        android:textColor="@color/colorBlackLevel3"
+        android:textSize="@dimen/x13" />
+
+
+    <!--<com.sdk.views.imageview.RoundImageView
+        android:id="@+id/img_item_head"
+        android:layout_width="@dimen/x27"
+        android:layout_height="@dimen/x27"
+        android:layout_marginLeft="@dimen/x9"
+        android:layout_marginTop="@dimen/x9"
+        android:src="@drawable/login_head" />
+
+    <TextView
+        android:id="@+id/tv_item_realname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x9"
+        android:layout_marginTop="@dimen/x9"
+        android:layout_toRightOf="@+id/img_item_head"
+        android:text="prince蓝卡"
+        android:textColor="@color/colorBlackLevel3"
+        android:textSize="@dimen/x9" />
+
+    <TextView
+        android:id="@+id/tv_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_realname"
+        android:layout_marginLeft="@dimen/x9"
+        android:layout_toRightOf="@+id/img_item_head"
+        android:text="第556楼 | 06-21"
+        android:textColor="@color/sbc_header_text"
+        android:textSize="@dimen/x9" />
+
+    <TextView
+        android:id="@+id/tv_item_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/x11"
+        android:layout_marginRight="@dimen/x9"
+        android:text="86"
+        android:textColor="@color/sbc_header_text"
+        android:textSize="@dimen/x10" />
+
+    <ImageView
+        android:id="@+id/img_item_like"
+        android:layout_width="@dimen/x16"
+        android:layout_height="@dimen/x16"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginRight="@dimen/x2"
+        android:layout_toLeftOf="@+id/tv_item_like"
+        android:background="@drawable/icon_like" />
+
+
+    <TextView
+        android:id="@+id/tv_item_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_item_realname"
+        android:layout_below="@+id/img_item_head"
+        android:text="这个视频很精彩啊！"
+        android:textColor="@color/colorBlackLevel3"
+        android:textSize="@dimen/x13" />
+
+    <PullRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_item_realname"
+        android:layout_below="@+id/tv_item_detail"
+        android:layout_marginBottom="@dimen/x9"
+        android:layout_marginRight="@dimen/x9"
+        android:layout_marginTop="@dimen/x4"
+        android:background="@drawable/r8_gray_noc">
+
+        <TextView
+            android:id="@+id/tv_item_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x6"
+            android:text="清风明月等人 共2条回复 >"
+            android:textColor="@color/colorBlackLevel3"
+            android:textSize="@dimen/x13" />
+
+    </PullRelativeLayout>
+-->
+
+</RelativeLayout>

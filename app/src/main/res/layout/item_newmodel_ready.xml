@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:centerText="@string/title_ready"
+        app:textColor="@color/colorGray"
+        app:leftIcon="@drawable/icon_back" />
+
+    <View
+        android:background="@color/colorThinBlack"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/id_menu"
+        android:layout_height="0.5dp" />
+    
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="@dimen/x240"
+        android:background="@drawable/beauty"
+        android:layout_below="@+id/id_menu"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/x250"
+        android:layout_marginTop="@dimen/x18"/>
+
+    <TextView
+        android:layout_width="@dimen/x102"
+        android:layout_height="@dimen/x32"
+        android:layout_below="@+id/img1"
+        android:gravity="center"
+        android:text="光照充足均匀"
+        android:textSize="@dimen/x12"
+        android:layout_marginTop="@dimen/x18"
+        android:textColor="@color/colorBlackLevel2"
+        android:layout_alignLeft="@+id/img1"
+        android:background="@drawable/ready_tx"
+        android:elevation="1dp"
+        />
+
+    <TextView
+        android:layout_width="@dimen/x102"
+        android:layout_height="@dimen/x32"
+        android:layout_below="@+id/img1"
+        android:gravity="center"
+        android:text="五官没有遮挡"
+        android:textSize="@dimen/x12"
+        android:layout_marginTop="@dimen/x18"
+        android:textColor="@color/colorBlackLevel2"
+        android:layout_alignRight="@+id/img1"
+        android:background="@drawable/ready_tx"
+        android:elevation="1dp"
+        />
+
+    <TextView
+        android:layout_width="@dimen/x102"
+        android:layout_height="@dimen/x32"
+        android:layout_below="@+id/img1"
+        android:gravity="center"
+        android:text="脸部正面扫描"
+        android:textSize="@dimen/x12"
+        android:layout_marginTop="@dimen/x68"
+        android:textColor="@color/colorBlackLevel2"
+        android:layout_alignLeft="@+id/img1"
+        android:background="@drawable/ready_tx"
+        android:elevation="1dp"
+        />
+
+    <TextView
+        android:layout_width="@dimen/x102"
+        android:layout_height="@dimen/x32"
+        android:layout_below="@+id/img1"
+        android:gravity="center"
+        android:text="表情自然放松"
+        android:textSize="@dimen/x12"
+        android:layout_marginTop="@dimen/x68"
+        android:textColor="@color/colorBlackLevel2"
+        android:layout_alignRight="@+id/img1"
+        android:background="@drawable/ready_tx"
+        android:elevation="1dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_ready_go"
+        android:layout_width="@dimen/x222"
+        android:layout_height="@dimen/x34"
+        android:layout_below="@+id/img1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x140"
+        android:background="@drawable/r8_deepskyblue_btn"
+        android:gravity="center"
+        android:text="摆出拍证件照的样子，开始吧"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x13" />
+
+</RelativeLayout>

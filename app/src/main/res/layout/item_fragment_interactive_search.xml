@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x6"
+        android:background="@drawable/r8_gray_noc"
+        android:orientation="horizontal"
+        android:padding="@dimen/x8">
+
+        <ImageView
+            android:layout_width="@dimen/x12"
+            android:layout_height="@dimen/x18"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_061" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x18"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/x4"
+            android:text="搜索添加好友"
+            android:textColor="@color/colorHintGray"
+            android:textSize="@dimen/x14" />
+
+    </LinearLayout>
+</FrameLayout>

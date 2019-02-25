@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@id/id_content_son1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginBottom="@dimen/x2"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_weight="1"
+        android:background="@drawable/ra_white_shadow_btn"
+        android:elevation="2dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_video_image1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_026" />
+
+        <TextView
+            android:id="@+id/tv_video_title1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x2"
+            android:singleLine="true"
+            android:text="儿童时最难忘的活动"
+            android:textSize="@dimen/x12" />
+
+        <TextView
+            android:id="@+id/tv_video_time1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x12"
+            android:paddingLeft="@dimen/x2"
+            android:text="创建时间：2018.04.29"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="@dimen/x10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/id_content_son2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_marginBottom="@dimen/x2"
+        android:background="@drawable/ra_white_shadow_btn"
+        android:elevation="2dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_video_image2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_cover4" />
+
+        <TextView
+            android:id="@+id/tv_video_title2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x2"
+            android:singleLine="true"
+            android:text="儿童时最难忘的活动"
+            android:textSize="@dimen/x12" />
+
+        <TextView
+            android:id="@+id/tv_video_time2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/x12"
+            android:paddingLeft="@dimen/x6"
+            android:text="创建时间：2018.04.29"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="@dimen/x10" />
+    </LinearLayout>
+</LinearLayout>

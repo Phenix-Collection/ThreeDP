@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg">
+
+
+
+    <!--模型容器-->
+    <android.opengl.GLSurfaceView
+        android:id="@+id/gl_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/id_menu"
+        android:layout_above="@id/ll_change_style"
+        android:layout_alignParentRight="true">
+
+    </android.opengl.GLSurfaceView>
+
+    <TextView
+        android:id="@+id/tv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_change_style"
+        android:gravity="center"
+        android:text="载入中..."
+        android:textColor="@color/colorWhite"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:background="#99ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/id_back"
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42"
+            android:background="@drawable/ra_transparent_btn"
+            android:padding="@dimen/x8"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="装扮"
+            android:textColor="#191919"
+            android:textSize="@dimen/x14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x42"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ra_transparent_btn"
+            android:paddingLeft="@dimen/x8"
+            android:paddingRight="@dimen/x8"
+            android:layout_centerVertical="true"
+            android:text="保存形象"
+            android:textColor="#191919"
+            android:textSize="@dimen/x13" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_change_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x20"
+            android:paddingTop="@dimen/x8"
+            android:paddingRight="@dimen/x12">
+
+            <TextView
+                android:id="@+id/tv_cloth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="衣服"
+                android:textColor="@color/colorBlack"
+                android:padding="@dimen/x4"
+                android:textSize="@dimen/x14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x24"
+                android:layout_toRightOf="@id/tv_cloth"
+                android:padding="@dimen/x4"
+                android:text="眼镜"
+                android:textColor="@color/voip_interface_text_color"
+                android:textSize="@dimen/x14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_hair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x24"
+                android:layout_toRightOf="@id/tv_glass"
+                android:padding="@dimen/x4"
+                android:text="发型"
+                android:textColor="@color/voip_interface_text_color"
+                android:textSize="@dimen/x14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_suit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x24"
+                android:layout_toRightOf="@id/tv_hair"
+                android:padding="@dimen/x4"
+                android:text="套服"
+                android:textColor="@color/voip_interface_text_color"
+                android:textSize="@dimen/x14"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/v_prop_solid"
+                android:layout_width="@dimen/x28"
+                android:layout_height="4dp"
+                android:layout_below="@id/tv_cloth"
+                android:layout_marginLeft="@dimen/x5"
+                android:background="@drawable/sign_underline" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorThinBlack" />
+
+
+        <com.sdk.views.listview.HorizontalListView
+            android:id="@+id/hsv_prop"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x60"/>
+        <!--<ListView
+            android:id="@+id/hsv_prop"
+            android:background="@color/colorWhite"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x60">
+
+
+        </ListView>-->
+
+    </LinearLayout>
+
+
+</RelativeLayout>

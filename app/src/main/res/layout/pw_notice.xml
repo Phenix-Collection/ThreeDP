@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@drawable/r8_white_normal"
+    android:layout_height="@dimen/x113">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/x13"
+        android:textColor="@color/colorBlackLevel3"
+        android:layout_marginTop="@dimen/x18"
+        android:text="是否重置您的形象？"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv1"
+        android:textSize="@dimen/x11"
+        android:layout_marginTop="@dimen/x4"
+        android:textColor="@color/colorGray"
+        android:text="重置后您的形象将会变回刚创建的样子！"/>
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="@dimen/x209"
+        android:layout_height="@dimen/x1"
+        android:background="#808080"
+        android:layout_marginTop="@dimen/x19"
+        android:layout_below="@+id/tv2"/>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="@dimen/x104"
+        android:layout_height="@dimen/x35"
+        android:gravity="center"
+        android:background="@drawable/ra_white_btn"
+        android:textSize="@dimen/x13"
+        android:text="取消"
+        android:textColor="@color/colorDeepBlue"
+        android:layout_below="@+id/v1"/>
+
+    <View
+        android:id="@+id/vv"
+        android:layout_width="@dimen/x1"
+        android:background="#808080"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/x35"
+        android:layout_below="@+id/v1"/>
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="@dimen/x104"
+        android:layout_height="@dimen/x35"
+        android:gravity="center"
+        android:background="@drawable/ra_white_btn"
+        android:textSize="@dimen/x13"
+        android:layout_marginLeft="@dimen/x105"
+        android:text="重置"
+        android:textColor="@color/colorDeepBlue"
+        android:layout_below="@+id/v1"/>
+
+</RelativeLayout>

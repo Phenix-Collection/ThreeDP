@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/ibtn_back"
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42"
+            android:padding="@dimen/x6"
+            android:background="@drawable/ra_transparent_btn"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:text="我的好友"
+            android:textColor="#191919"
+            android:textSize="@dimen/x14"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/ibtn_add_friend"
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42"
+            android:padding="@dimen/x6"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ra_transparent_btn"
+            android:src="@drawable/icon_add" />
+
+    </RelativeLayout>
+
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:id="@id/id_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FAFAFA">
+
+        <com.sdk.views.listview.PullListView
+            android:id="@id/id_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:scrollbars="none" />
+
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+</LinearLayout>

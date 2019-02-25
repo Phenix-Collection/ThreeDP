@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tdp.main">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.xiaomi.market.sdk.UPDATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <!--更改系统设置的权限-->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:name="com.tdp.app.MyAppliction"
+        android:allowBackup="false"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/notitle">
+
+        <!--欢迎页面-->
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <receiver android:name="com.xiaomi.market.sdk.DownloadCompleteReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
+        <!-- 文件选择器 -->
+        <activity android:name="com.sdk.utils.imgeloader.ImageLoadActivity" />
+        <activity android:name="com.sdk.utils.imgeloader.ImageEditActivity" />
+
+        <!--登录页面-->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <!--主页页面-->
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--注册页面-->
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <!--换脸、换模型的页面-->
+        <activity
+            android:name=".activity.NewModelActivity"
+            android:screenOrientation="portrait" />
+        <!--切换用户页面-->
+        <activity
+            android:name=".activity.ChangeUserActivity"
+            android:screenOrientation="portrait" />
+        <!--编辑用户页面-->
+        <activity
+            android:name=".activity.ManageUserActivity"
+            android:screenOrientation="portrait" />
+        <!-- 选择城市 -->
+        <activity android:name=".activity.userinfo.ChooseCityActivity" />
+        <!-- 选择性别 -->
+        <activity android:name=".activity.userinfo.EditGenderActivity" />
+        <!-- 选择生日 -->
+        <activity android:name=".activity.userinfo.EditBirthdayActivity" />
+        <!-- 修改好友别名 -->
+        <activity android:name=".activity.userinfo.EditRemarkActivity" />
+        <!-- 找回密码页面-->
+        <activity
+            android:name=".activity.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+        <!--修改密码页面-->
+        <activity
+            android:name=".activity.EditPasswordActivity"
+            android:screenOrientation="portrait" />
+        <!--设置个人信息页面-->
+        <activity
+            android:name=".activity.EditUserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 搜索用户 -->
+        <activity android:name=".activity.SearchUserInfoActivity"
+            android:screenOrientation="portrait"/>
+        <!--展示个人信息页面-->
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 添加好友请求 -->
+        <activity android:name=".activity.AddFriendActivity" />
+        <!--视频详情页面-->
+        <activity
+            android:name=".activity.video.VideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+        </activity>
+        <!--分享页面-->
+        <activity
+            android:name=".activity.ShareActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+
+        </activity>
+
+        <!-- 评论详情页面-->
+        <activity
+            android:name=".activity.video.CommentDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 举报页面-->
+        <activity
+            android:name=".activity.video.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.MessageActivity" />
+        <!-- 关于 -->
+        <activity android:name=".activity.AbountActivity" />
+        <!-- 使用帮助 -->
+        <activity android:name=".activity.HelpActivity" />
+        <!-- 形象设计页面-->
+        <activity
+            android:name=".activity.FigureActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.tdp.main.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- 聊天 -->
+        <!-- 好友 -->
+        <activity android:name=".activity.FriendListActivity" />
+        <activity android:name="com.chat.activity.ToChatActivity" android:windowSoftInputMode="stateHidden|adjustPan"  />
+        <activity android:name="com.chat.activity.ChatActivity" />
+        <activity android:name="com.chat.activity.ChatFragment" />
+        <!--<activity android:name="com.hxchat.ui.UserProfileActivity" />-->
+        <activity android:name="com.chat.easeui.ui.EaseShowBigImageActivity" />
+        <activity android:name="com.chat.ui.ContextMenuActivity" />
+        <activity android:name="com.chat.easeui.ui.EaseBaiduMapActivity" />
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1130170325178319#lifestroy" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 华为推送 -->
+        <meta-data
+            android:name="com.huawei.hms.client.appid"
+            android:value="appid=100420519"></meta-data>
+
+        <meta-data android:name="com.baidu.lbsapi.API_KEY"
+            android:value="X1WGOzRdxTYzRuU0UKAFH1FF8CONGlp1">
+
+        </meta-data>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"></service>
+
+        <!-- 极光推送自定义接收广播服务 -->
+        <receiver
+            android:name=".service.MyJPushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+
+                <category android:name="com.tdp.main" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

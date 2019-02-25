@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 全局 -->
+    <item name="id_menu_top" type="id"></item><!-- 顶部菜单 -->
+    <item name="id_menu_left_icon" type="id"></item> <!-- 菜单左边图片 -->
+    <item name="id_menu_left_label" type="id"></item> <!-- 菜单左边文字 -->
+    <item name="id_menu_center_icon" type="id"></item> <!-- 菜单中间图片 -->
+    <item name="id_menu_center_label" type="id"></item> <!-- 菜单中间文字 -->
+    <item name="id_menu_right_label" type="id"></item>
+    <item name="id_menu_right1_icon" type="id"></item> <!-- 菜单右边图片 -->
+    <item name="id_menu_right2_icon" type="id"></item> <!-- 菜单右边图片 -->
+    <item name="id_menu_right3_icon" type="id"></item> <!-- 菜单右边图片 -->
+    <item name="id_start" type="id"></item>
+    <item name="id_end" type="id"></item>
+    <item name="id_code" type="id"></item> <!-- 代码 -->
+    <item name="id_no" type="id"></item> <!-- 编码 -->
+    <item name="id_contract_no" type="id"></item> <!-- 合同编号 -->
+    <item name="id_series" type="id"></item> <!-- 系列 -->
+    <item name="id_name" type="id"></item> <!-- 名称 -->
+    <item name="id_nickname" type="id"></item> <!--昵称-->
+    <item name="id_product" type="id"></item>
+    <item name="id_uname" type="id"></item>
+    <item name="id_type" type="id"></item> <!-- 类型 -->
+    <item name="id_construction" type="id"></item> <!-- 结构 -->
+    <item name="id_process" type="id"></item> <!-- 工序 -->
+    <item name="id_account" type="id"></item> <!-- 账号 -->
+    <item name="id_tip" type="id"></item>
+    <item name="id_account_label" type="id"></item>
+    <item name="id_phone" type="id"></item>
+    <item name="id_email" type="id"></item>
+    <item name="id_phone_label" type="id"></item>
+    <item name="id_logo" type="id"></item> <!-- logo -->
+    <item name="id_password_old" type="id"></item> <!-- 密码 -->
+    <item name="id_password" type="id"></item> <!-- 密码 -->
+    <item name="id_password_new" type="id"></item><!-- 新密码 -->
+    <item name="id_confirm" type="id"></item> <!-- 确认 -->
+    <item name="id_enter" type="id"></item>
+    <item name="id_next" type="id"></item> <!-- 下一项 -->
+    <item name="id_finished" type="id"></item> <!-- 完成 -->
+    <item name="id_cancel" type="id"></item> <!-- 取消 -->
+    <item name="id_back" type="id"></item> <!-- 返回 -->
+    <item name="id_ok" type="id"></item> <!-- 确定 -->
+    <item name="id_send" type="id"></item> ><!-- 发送 -->
+    <item name="id_reset" type="id"></item> <!-- 重置 -->
+    <item name="id_clear" type="id"></item> <!-- 清空 -->
+    <item name="id_delete" type="id"></item> <!-- 删除 -->
+    <item name="id_top" type="id"></item> <!-- 上 -->
+    <item name="id_bottom" type="id"></item> <!-- 下 -->
+    <item name="id_left" type="id"></item> <!-- 左 -->
+    <item name="id_center" type="id"></item> <!-- 中 -->
+    <item name="id_right" type="id"></item> <!-- 右 -->
+    <item name="id_new" type="id"></item> <!-- 新建 -->
+    <item name="id_find" type="id"></item> <!-- 搜索 -->
+    <item name="id_date" type="id"></item> <!-- 日期 -->
+    <item name="id_week" type="id"></item> <!-- 周 -->
+    <item name="id_time" type="id"></item> <!-- 时间 -->
+    <item name="id_year" type="id"></item> <!-- 年 -->
+    <item name="id_month" type="id"></item> <!-- 月 -->
+    <item name="id_day" type="id"></item> <!-- 日 -->
+    <item name="id_house" type="id"></item> <!-- 时 -->
+    <item name="id_minute" type="id"></item> <!-- 分 -->
+    <item name="id_second" type="id"></item> <!-- 秒 -->
+    <item name="id_quantity" type="id"></item> <!-- 数量 -->
+    <item name="id_holiday" type="id"></item> <!-- 假期 -->
+    <item name="id_normal" type="id"></item><!-- 正常 -->
+    <item name="id_total" type="id"></item> <!-- 所有 -->
+    <item name="id_daytime" type="id"></item> <!-- 白天 -->
+    <item name="id_night" type="id"></item> <!-- 黑夜 -->
+    <item name="id_go" type="id"></item> <!-- 前进 -->
+    <item name="id_retreat" type="id"></item> <!-- 后退 -->
+    <item name="id_refresh" type="id"></item> <!-- 刷新 -->
+    <item name="id_stop" type="id"></item> <!-- 暂停 -->
+    <item name="id_title" type="id"></item> <!-- 标题 -->
+    <item name="id_menu" type="id"></item> <!-- 菜单 -->
+    <item name="id_content" type="id"></item> <!-- 内容 -->
+    <item name="id_price" type="id"></item> <!-- 价格 -->
+    <item name="id_detail" type="id"></item><!-- 详情 -->
+    <item name="id_setting" type="id"></item><!--设置-->
+    <item name="id_sort" type="id"></item> <!-- 排序 -->
+    <item name="id_service" type="id"></item>
+    <item name="id_system" type="id"></item>
+    <item name="id_solid" type="id"></item>
+    <item name="id_item" type="id"></item>
+    <item name="id_content_son1" type="id"></item><!-- 子内容1 -->
+    <item name="id_content_son2" type="id"></item><!-- 子内容2 -->
+    <item name="id_content_son3" type="id"></item><!-- 子内容3 -->
+    <item name="id_content_son4" type="id"></item><!-- 子内容4 -->
+    <item name="id_content_son5" type="id"></item><!-- 子内容5 -->
+
+
+    <!-- -->
+    <item name="id_home" type="id"></item>
+    <item name="id_home_icon" type="id"></item>
+    <item name="id_home_label" type="id"></item>
+    <item name="id_ucenter" type="id"></item>
+    <item name="id_ucenter_icon" type="id"></item>
+    <item name="id_ucenter_label" type="id"></item>
+    <item name="id_reportwage" type="id"></item>
+    <item name="id_reportwage_icon" type="id"></item>
+    <item name="id_reportwage_label" type="id"></item>
+    <item name="id_what1" type="id"></item>
+    <item name="id_what1_icon" type="id"></item>
+    <item name="id_what1_label" type="id"></item>
+
+    <item name="id_item_image" type="id"></item>
+
+    <!-- zlcai -->
+    <item type="id" name="auto_focus"/>
+    <item type="id" name="decode"/>
+    <item type="id" name="decode_failed"/>
+    <item type="id" name="decode_succeeded"/>
+    <item type="id" name="encode_failed"/>
+    <item type="id" name="encode_succeeded"/>
+    <item type="id" name="launch_product_query"/>
+    <item type="id" name="quit"/>
+    <item type="id" name="restart_preview"/>
+    <item type="id" name="return_scan_result"/>
+    <item type="id" name="search_book_contents_failed"/>
+    <item type="id" name="search_book_contents_succeeded"/>
+</resources>

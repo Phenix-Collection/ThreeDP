@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:background="@color/colorBlack"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/r8_white_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/x8">
+
+        <com.sdk.views.refresh.GifView
+            android:id="@+id/util_loading_pgb"
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42"
+            android:layout_centerHorizontal="true"
+            app:gif="@raw/zl_loading" />
+
+        <TextView
+            android:id="@+id/dialog_loading_message_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/util_loading_pgb"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x8"
+            android:gravity="center"
+            android:text="@string/prompt_loading"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="@dimen/x12" />
+    </RelativeLayout>
+
+</RelativeLayout>

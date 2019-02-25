@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorSlightGray"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:leftIcon="@drawable/icon_back" />
+
+    <View
+        android:background="@color/colorThinBlack"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+
+    <com.sdk.views.listview.pulllistview.PullToRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <com.sdk.views.listview.PullScrollView
+            android:id="@id/id_refresh"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/x4"
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:id="@id/id_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <com.sdk.views.imageview.RoundImageView
+                        android:id="@+id/img_head"
+                        android:layout_width="@dimen/x27"
+                        android:layout_height="@dimen/x27"
+                        android:layout_marginLeft="@dimen/x9"
+                        android:layout_marginTop="@dimen/x9"
+                        android:src="@drawable/login_head" />
+
+                    <TextView
+                        android:id="@+id/tv_realname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x9"
+                        android:layout_marginTop="@dimen/x9"
+                        android:layout_toRightOf="@+id/img_head"
+                        android:text="prince蓝卡"
+                        android:textColor="@color/colorBlackLevel3"
+                        android:textSize="@dimen/x11" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_realname"
+                        android:layout_marginLeft="@dimen/x9"
+                        android:layout_toRightOf="@+id/img_head"
+                        android:text="第556楼 | 06-21"
+                        android:textColor="@color/sbc_header_text"
+                        android:textSize="@dimen/x9" />
+
+                    <TextView
+                        android:id="@+id/tv_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/x11"
+                        android:layout_marginRight="@dimen/x9"
+                        android:text="86"
+                        android:textColor="@color/sbc_header_text"
+                        android:textSize="@dimen/x10" />
+
+                    <ImageView
+                        android:id="@+id/img_like"
+                        android:layout_width="@dimen/x16"
+                        android:layout_height="@dimen/x16"
+                        android:layout_marginTop="@dimen/x10"
+                        android:layout_marginRight="@dimen/x2"
+                        android:layout_toLeftOf="@+id/tv_like"
+                        android:background="@drawable/icon_like" />
+
+
+                    <TextView
+                        android:id="@+id/tv_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x9"
+                        android:layout_marginLeft="@dimen/x7"
+                        android:layout_below="@+id/img_head"
+                        android:text="这个视频很精彩啊！"
+                        android:textColor="@color/colorBlackLevel3"
+                        android:textSize="@dimen/x14" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x1"
+                        android:background="@color/colorThinBlack"
+                        android:layout_below="@+id/tv_comment"
+                        android:layout_marginTop="@dimen/x15"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </com.sdk.views.listview.PullScrollView>
+
+
+    </com.sdk.views.listview.pulllistview.PullToRefreshLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_height="@dimen/x36">
+
+        <ImageView
+            android:id="@+id/img_smile"
+            android:layout_width="@dimen/x21"
+            android:layout_height="@dimen/x21"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x4"
+            android:background="@drawable/icon_blue_smile" />
+
+        <ImageView
+            android:id="@+id/img_img"
+            android:layout_width="@dimen/x21"
+            android:layout_height="@dimen/x21"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x4"
+            android:background="@drawable/icon_img" />
+
+        <EditText
+            android:id="@+id/edt_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x9"
+            android:layout_marginRight="@dimen/x9"
+            android:layout_toLeftOf="@+id/img_img"
+            android:layout_toRightOf="@+id/img_smile"
+            android:background="@color/colorWhite"
+            android:hint="请输入内容"
+            android:textColor="@color/sbc_header_text"
+            android:textSize="@dimen/x13" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

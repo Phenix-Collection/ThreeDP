@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:background="@drawable/ra_white_btn"
+        android:padding="@dimen/x8"
+        android:layout_margin="@dimen/x8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_interactive_ulogo"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
+            android:layout_marginRight="@dimen/x8"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_login_head" />
+
+        <TextView
+            android:id="@+id/tv_interactive_uname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_interactive_ulogo"
+            android:layout_centerVertical="true"
+            android:text="Hurin omar"
+            android:textColor="@color/colorBlackLevel3"
+            android:textSize="@dimen/x14" />
+
+        <!--<TextView
+            android:id="@id/id_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_interactive_uname"
+            android:layout_toRightOf="@id/iv_interactive_ulogo"
+            android:text="sure 8:pm"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="@dimen/x10" />-->
+
+    </RelativeLayout>
+
+    <View
+        android:background="@color/colorThinBlack"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+</LinearLayout>

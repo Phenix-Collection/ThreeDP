@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_all"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSlightGray">
+
+    <com.sdk.views.Menu.TopMenuView
+        android:id="@id/id_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x38"
+        android:background="@color/colorWhite"
+        app:centerText="@string/title_share"
+        app:leftIcon="@drawable/icon_back"
+        app:rightText="@string/title_publish"
+        app:rightTextColor="@color/colorHintGray"
+        app:textColor="@color/colorGray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorThinBlack" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x90"
+        android:background="@color/colorWhite">
+
+        <EditText
+            android:id="@+id/edt_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:hint="说点什么吧..."
+            android:gravity="top"
+            android:padding="@dimen/x9"
+            android:paddingBottom="0px"
+            android:textSize="@dimen/x13" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x71"
+        android:background="@color/colorWhite"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_video"
+            android:layout_width="@dimen/x53"
+            android:layout_height="@dimen/x53"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x9"
+            android:scaleType="fitXY" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x53"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x9"
+            android:layout_toRightOf="@id/img_video"
+            android:background="@color/colorSlightGray" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x18"
+            android:layout_marginLeft="@dimen/x9"
+            android:layout_marginRight="@dimen/x18"
+            android:layout_marginTop="@dimen/x18"
+            android:layout_toRightOf="@id/img_video"
+            android:text="个人生活故事"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/x12" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_addvideo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x71"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:text="添加视频"
+        android:textColor="@color/colorHintGray"
+        android:textSize="@dimen/x13"
+        android:visibility="visible" />
+
+</LinearLayout>

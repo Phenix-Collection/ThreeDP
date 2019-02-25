@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:padding="@dimen/x8">
+
+    <ImageView
+        android:id="@id/id_logo"
+        android:layout_width="@dimen/x42"
+        android:layout_height="@dimen/x42"
+        android:src="@drawable/icon_ucenter_user" />
+
+    <TextView
+        android:id="@id/id_account"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x21"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_toRightOf="@id/id_logo"
+        android:gravity="center_vertical"
+        android:text="super_link"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/x14" />
+
+    <TextView
+        android:id="@id/id_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x21"
+        android:layout_below="@id/id_account"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_toRightOf="@id/id_logo"
+        android:gravity="center_vertical"
+        android:text="手机号：13432767755"
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="@dimen/x12" />
+
+</RelativeLayout>

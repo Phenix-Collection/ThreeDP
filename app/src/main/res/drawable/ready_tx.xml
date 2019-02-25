@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <!-- SHADOW LAYER 外阴影 -->
+            <item >
+                <shape>
+                    <corners android:radius="6dp" />
+                    <solid android:color="#EFEFEF"/>
+                </shape>
+            </item>
+            <!-- CONTENT LAYER -->
+            <!-- 相当于padding -->
+            <item >
+                <shape>
+                    <corners android:radius="6dp" />
+                    <solid android:color="#FCFAFC"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
