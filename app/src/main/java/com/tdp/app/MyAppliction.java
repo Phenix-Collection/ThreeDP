@@ -11,6 +11,7 @@ import com.chat.HMSPushHelper;
 import com.chat.easeui.EaseUI;
 import com.faceunity.p2a.FUP2AClient;
 import com.sdk.core.CacheImageControl;
+import com.sdk.core.Fup2aController;
 import com.sdk.core.Globals;
 import com.sdk.core.HuanxinControl;
 import com.sdk.core.JPushControl;
@@ -22,8 +23,6 @@ import com.sdk.utils.SystemUtil;
 import com.sdk.views.dialog.AlertDialog;
 import com.sdk.views.dialog.Toast;
 import com.sdk.views.dialog.listener.OnDialogClickListener;
-import com.tdp.main.agl.FURenderer;
-import com.tdp.main.agl.web.OkHttpUtils;
 
 import java.io.InputStream;
 
@@ -53,21 +52,22 @@ public class MyAppliction extends Application implements OnWebExceptionListener,
 	
 
 	private void init(){
-		OkHttpUtils.initOkHttpUtils(OkHttpUtils.initOkHttpClient(this));
-		FURenderer.initFURenderer(this);
-		try {
-			InputStream clientBin = getAssets().open("p2a_client.bin");
-			byte[] clientBinData = new byte[clientBin.available()];
-			clientBin.read(clientBinData);
-			clientBin.close();
-			FUP2AClient.getFUP2AClient().setupData(clientBinData);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		OkHttpUtils.initOkHttpUtils(OkHttpUtils.initOkHttpClient(this));
+//		FURenderer.initFURenderer(this);
+//		try {
+//			InputStream clientBin = getAssets().open("p2a_client.bin");
+//			byte[] clientBinData = new byte[clientBin.available()];
+//			clientBin.read(clientBinData);
+//			clientBin.close();
+//			FUP2AClient.getFUP2AClient().setupData(clientBinData);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 //		initChatConfig();
 		HuanxinControl.init(this); // 环信
 		JPushControl.init(this); // 极光推送控制类
 		CacheImageControl.init(this);
+		Fup2aController.init(this);
 
 		if (EaseUI.getInstance().isMainProcess(this)) {
 			// 初始化华为 HMS 推送服务, 需要在SDK初始化后执行

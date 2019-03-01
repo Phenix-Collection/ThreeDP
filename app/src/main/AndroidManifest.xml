@@ -72,7 +72,7 @@
             android:screenOrientation="portrait" />
         <!--换脸、换模型的页面-->
         <activity
-            android:name=".activity.NewModelActivity"
+            android:name=".activity.CreateAvatarActivity"
             android:screenOrientation="portrait" />
         <!--切换用户页面-->
         <activity

@@ -40,6 +40,9 @@ import butterknife.OnClick;
  **/
 
 public class HomeFriendFragment extends BaseFragment implements EMMessageListener {
+
+    public static final String TAG = "FRAGMENT_HOME_FRIEND";
+
     @BindView(R.id.id_content)
     EaseConversationList conversationListView;
     protected List<EMConversation> conversationList = new ArrayList<EMConversation>();

@@ -6,6 +6,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.sdk.db.entity.AvatarHistory;
 import com.sdk.db.entity.EaseMessageHistoryList;
 import com.sdk.db.entity.NotifyMessage;
 import java.lang.annotation.ElementType;
@@ -42,19 +44,27 @@ public class DBHelper extends SQLiteOpenHelper {
 //		createTable(db, ShareTrendsTask.class);
 		createTable(db, EaseMessageHistoryList.class);
 		createTable(db, NotifyMessage.class);
+		createTable(db, AvatarHistory.class);
 	}
 
 	// 如果DATABASE_VERSION值被改为2,系统发现现有数据库版本不同,即会调用onUpgrade
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //		db.execSQL("ALTER TABLE person ADD COLUMN other STRING");
-		if(oldVersion == 1){
-			
-		}
-		
-		
-		
+        dropTable(db, EaseMessageHistoryList.class);
+        dropTable(db, NotifyMessage.class);
+        dropTable(db, AvatarHistory.class);
+        onCreate(db);
+
 	}
+
+    public void dropTable(SQLiteDatabase db, Class clazz){
+        StringBuffer sb = new StringBuffer();
+        sb.append("DROP TABLE IF EXISTS ");
+        sb.append(clazz.getSimpleName().toLowerCase());//使用类名作为表名
+        sb.append("(");
+        db.execSQL(sb.toString());
+    }
 	
 	@SuppressLint("DefaultLocale")
 	public void createTable(SQLiteDatabase db, Class clazz) {  

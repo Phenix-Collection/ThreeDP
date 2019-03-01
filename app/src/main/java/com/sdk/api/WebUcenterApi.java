@@ -53,6 +53,13 @@ public interface WebUcenterApi {
 		   @Field("sex") int sex, @Field("birthday") String birthday, @Field("address") String address, @Field("educational") String educational,
 		   @Field("occupation") String occupation, @Field("email") String email, @Field("phone_number") String phone_number, @Field("security") int security);
 
-
+	/***
+	 * 修改用户信息
+	 * @param mirrorValue 化身实体
+	 * @return
+	 */
+	@FormUrlEncoded
+	@POST("user/edit_mirror")
+	public Observable<WebMsg> editMirror(@Field("mirrorValue") String mirrorValue);
 
 }

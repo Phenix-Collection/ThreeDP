@@ -36,6 +36,9 @@ import butterknife.OnClick;
  **/
 
 public class HomeUCenterFragment extends BaseFragment {
+
+    public static final String TAG = "FRAGMENT_HOME_UCENTER";
+
     @BindView(R.id.img_head)
     ImageView imgHead;
     @BindView(R.id.id_uname)

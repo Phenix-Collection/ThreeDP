@@ -1,74 +1,44 @@
 package com.tdp.main.controller.newmodel;
 
-
-import android.content.Intent;
-import android.os.Build;
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.sdk.utils.imgeloader.ImageLoadActivity;
-import com.sdk.views.Menu.TopMenuView;
 import com.tdp.main.R;
-import com.tdp.main.activity.EditUserInfoActivity;
-import com.tdp.main.activity.MainActivity;
-import com.tdp.main.activity.NewModelActivity;
-
-import butterknife.BindView;
+import com.tdp.main.constant.SexEnum;
+import com.tdp.main.controller.listener.OnCreateAvatarListener;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectSexController {
-    @BindView(R.id.tv_selectsex_man)
-    TextView tvSelectsexMan;
-    @BindView(R.id.tv_selectsex_woman)
-    TextView tvSelectsexWoman;
-    private NewModelActivity context;
-    private String TAG="SelectSexController";
 
-    public SelectSexController(NewModelActivity context) {
+    private Context context;
+    private OnCreateAvatarListener listener;
+
+    public SelectSexController(Context context, OnCreateAvatarListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
-    public void initView(RelativeLayout group) {
-        group.removeAllViews();
-        View v = LayoutInflater.from(context).inflate(R.layout.item_newmodel_selectsex, group);
+    /***
+     * 展示界面
+     * @param view
+     */
+    public void show(RelativeLayout view){
+        View v = LayoutInflater.from(context).inflate(R.layout.item_newmodel_selectsex, view);
         ButterKnife.bind(this, v);
-        Log.e("ououou",context.TAG+TAG+"这里是选择性别步骤！");
     }
 
-    @OnClick({R.id.tv_exit, R.id.tv_selectsex_man, R.id.tv_selectsex_woman})
+    @OnClick({R.id.tv_exit, R.id.tv_male, R.id.tv_femal})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_exit:
-                context.finish();
+            case R.id.tv_male: // 男
+                listener.onSexResult(SexEnum.MALE.getIndex());
                 break;
-            case R.id.tv_selectsex_man:
-                next(1);
-                break;
-            case R.id.tv_selectsex_woman:
-                next(2);
+            case R.id.tv_femal: // 女
+                listener.onSexResult(SexEnum.FEMALE.getIndex());
                 break;
         }
     }
 
-    private void next(int sex){
-        context.sex=sex;
-        if(context.tag==NewModelActivity.FROM_CAMARA){
-            context.step2();
-        }else{
-            Intent intent = new Intent();
-            intent.setClass(context, ImageLoadActivity.class);
-//            intent.putExtra("choose_iscut", false); // 需要裁剪
-//            intent.putExtra("choose_isedit", false); // 设置编辑模式
-//            intent.putExtra("aspectX", 1);
-//            intent.putExtra("aspectY", 1);
-//            intent.putExtra("outputX", 800);
-//            intent.putExtra("outputY", 800);
-            context.startActivityForResult(intent, 1);
-        }
-    }
 }

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffffff"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
+    android:orientation="vertical">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/main_gl_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/x40" />
+
 
     <FrameLayout
         android:id="@id/id_content"
@@ -19,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
         android:layout_above="@+id/rl"
-        android:background="#cdcdcd"/>
+        android:background="#cdcdcd" />
 
     <RelativeLayout
         android:id="@+id/rl"
@@ -28,8 +36,8 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/x2"
-        android:paddingTop="@dimen/x4">
+        android:paddingTop="@dimen/x4"
+        android:paddingBottom="@dimen/x2">
 
         <LinearLayout
             android:id="@id/id_home"
@@ -43,37 +51,34 @@
                 android:id="@id/id_home_icon"
                 android:layout_width="@dimen/x20"
                 android:layout_height="@dimen/x20"
-                android:background="@null"
                 android:layout_gravity="center_horizontal"
+                android:background="@null"
                 android:foregroundGravity="center_horizontal"
                 android:gravity="center"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_home_n"
-                android:textSize="38sp"/>
+                android:textSize="38sp" />
 
             <TextView
                 android:id="@id/id_home_label"
                 android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="@string/action_home"
                 android:textColor="@color/colorPrimaryBlack"
-                android:textSize="@dimen/x10"
-                android:layout_height="wrap_content"/>
+                android:textSize="@dimen/x10" />
 
         </LinearLayout>
 
 
-
-
-
         <LinearLayout
-            android:id="@id/id_reportwage"
+            android:id="@+id/ll_video"
             android:layout_width="@dimen/x40"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/id_home"
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginRight="@dimen/x20"
+            android:layout_toRightOf="@id/id_home"
             android:orientation="vertical">
 
             <ImageView
@@ -86,7 +91,7 @@
                 android:gravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/icon_video_n"
-                android:textSize="38sp"/>
+                android:textSize="38sp" />
 
             <TextView
                 android:id="@id/id_reportwage_label"
@@ -96,18 +101,18 @@
                 android:gravity="center_horizontal"
                 android:text="@string/action_video"
                 android:textColor="@color/colorPrimaryBlack"
-                android:textSize="@dimen/x10"/>
+                android:textSize="@dimen/x10" />
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:id="@id/id_what1"
+            android:id="@+id/ll_friend"
             android:layout_width="@dimen/x40"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x20"
-            android:layout_toRightOf="@id/id_reportwage"
             android:layout_marginRight="@dimen/x20"
+            android:layout_toRightOf="@id/ll_video"
             android:orientation="vertical">
 
             <ImageView
@@ -120,7 +125,7 @@
                 android:gravity="center"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_interactive_n"
-                android:textSize="38sp"/>
+                android:textSize="38sp" />
 
             <TextView
                 android:id="@id/id_what1_label"
@@ -130,10 +135,9 @@
                 android:gravity="center_horizontal"
                 android:text="@string/action_activity"
                 android:textColor="@color/colorPrimaryBlack"
-                android:textSize="@dimen/x10"/>
+                android:textSize="@dimen/x10" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -141,8 +145,8 @@
             android:layout_width="@dimen/x40"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x20"
-            android:layout_toRightOf="@id/id_what1"
             android:layout_marginRight="@dimen/x20"
+            android:layout_toRightOf="@id/ll_friend"
             android:orientation="vertical">
 
             <ImageView
@@ -155,7 +159,7 @@
                 android:gravity="center"
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_my_n"
-                android:textSize="38sp"/>
+                android:textSize="38sp" />
 
             <TextView
                 android:id="@id/id_ucenter_label"
@@ -165,15 +169,21 @@
                 android:gravity="center_horizontal"
                 android:text="@string/action_ucenter"
                 android:textColor="@color/colorPrimaryBlack"
-                android:textSize="@dimen/x10"/>
+                android:textSize="@dimen/x10" />
 
         </LinearLayout>
     </RelativeLayout>
 
-<!--    <ImageView
-        android:id="@+id/img_logo"
+    <!--    <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/icon_weibo"/>-->
+    <View
+        android:id="@+id/loading_v"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/icon_weibo"/>-->
-
+        android:background="@drawable/guide_img"
+        android:elevation="@dimen/x50"
+        android:visibility="gone" />
 </RelativeLayout>

@@ -1,96 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <com.sdk.views.Menu.TopMenuView
-        android:id="@id/id_menu"
+    <RelativeLayout
+        android:id="@+id/rl_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        app:centerText="@string/title_ready"
-        app:textColor="@color/colorGray"
-        app:leftIcon="@drawable/icon_back" />
+        android:background="@color/colorWhite">
+
+        <ImageButton
+            android:id="@+id/ibtn_back"
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/x42"
+            android:background="@drawable/ra_white_btn"
+            android:padding="@dimen/x8"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="创建完美形象的秘诀"
+            android:textColor="#191919"
+            android:textSize="@dimen/x14"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <View
-        android:background="@color/colorThinBlack"
         android:layout_width="match_parent"
-        android:layout_below="@+id/id_menu"
-        android:layout_height="0.5dp" />
-    
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/rl_menu"
+        android:background="@color/colorThinBlack" />
+
     <ImageView
         android:id="@+id/img1"
         android:layout_width="@dimen/x240"
-        android:background="@drawable/beauty"
-        android:layout_below="@+id/id_menu"
+        android:layout_height="@dimen/y180"
+        android:layout_below="@+id/rl_menu"
         android:layout_centerHorizontal="true"
-        android:layout_height="@dimen/x250"
-        android:layout_marginTop="@dimen/x18"/>
-
-    <TextView
-        android:layout_width="@dimen/x102"
-        android:layout_height="@dimen/x32"
-        android:layout_below="@+id/img1"
-        android:gravity="center"
-        android:text="光照充足均匀"
-        android:textSize="@dimen/x12"
         android:layout_marginTop="@dimen/x18"
-        android:textColor="@color/colorBlackLevel2"
+        android:background="@drawable/beauty" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img1"
         android:layout_alignLeft="@+id/img1"
-        android:background="@drawable/ready_tx"
-        android:elevation="1dp"
-        />
+        android:layout_alignRight="@+id/img1">
 
-    <TextView
-        android:layout_width="@dimen/x102"
-        android:layout_height="@dimen/x32"
-        android:layout_below="@+id/img1"
-        android:gravity="center"
-        android:text="五官没有遮挡"
-        android:textSize="@dimen/x12"
-        android:layout_marginTop="@dimen/x18"
-        android:textColor="@color/colorBlackLevel2"
-        android:layout_alignRight="@+id/img1"
-        android:background="@drawable/ready_tx"
-        android:elevation="1dp"
-        />
+        <TextView
+            android:layout_width="@dimen/x102"
+            android:layout_height="@dimen/x32"
 
-    <TextView
-        android:layout_width="@dimen/x102"
-        android:layout_height="@dimen/x32"
-        android:layout_below="@+id/img1"
-        android:gravity="center"
-        android:text="脸部正面扫描"
-        android:textSize="@dimen/x12"
-        android:layout_marginTop="@dimen/x68"
-        android:textColor="@color/colorBlackLevel2"
-        android:layout_alignLeft="@+id/img1"
-        android:background="@drawable/ready_tx"
-        android:elevation="1dp"
-        />
+            android:layout_marginTop="@dimen/x18"
+            android:background="@drawable/ready_tx"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="光照充足均匀"
+            android:textColor="@color/colorBlackLevel2"
+            android:textSize="@dimen/x12" />
 
-    <TextView
-        android:layout_width="@dimen/x102"
-        android:layout_height="@dimen/x32"
-        android:layout_below="@+id/img1"
-        android:gravity="center"
-        android:text="表情自然放松"
-        android:textSize="@dimen/x12"
-        android:layout_marginTop="@dimen/x68"
-        android:textColor="@color/colorBlackLevel2"
-        android:layout_alignRight="@+id/img1"
-        android:background="@drawable/ready_tx"
-        android:elevation="1dp"
-        />
+        <TextView
+            android:layout_width="@dimen/x102"
+            android:layout_height="@dimen/x32"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/x18"
+            android:background="@drawable/ready_tx"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="五官没有遮挡"
+            android:textColor="@color/colorBlackLevel2"
+            android:textSize="@dimen/x12" />
+
+        <TextView
+            android:layout_width="@dimen/x102"
+            android:layout_height="@dimen/x32"
+            android:layout_marginTop="@dimen/x68"
+            android:background="@drawable/ready_tx"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="脸部正面扫描"
+            android:textColor="@color/colorBlackLevel2"
+            android:textSize="@dimen/x12" />
+
+        <TextView
+            android:layout_width="@dimen/x102"
+            android:layout_height="@dimen/x32"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/x68"
+            android:background="@drawable/ready_tx"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="表情自然放松"
+            android:textColor="@color/colorBlackLevel2"
+            android:textSize="@dimen/x12" />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/tv_ready_go"
         android:layout_width="@dimen/x222"
         android:layout_height="@dimen/x34"
-        android:layout_below="@+id/img1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/x140"
+        android:layout_marginBottom="@dimen/y20"
         android:background="@drawable/r8_deepskyblue_btn"
         android:gravity="center"
         android:text="摆出拍证件照的样子，开始吧"

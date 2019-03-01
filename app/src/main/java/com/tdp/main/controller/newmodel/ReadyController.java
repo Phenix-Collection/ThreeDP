@@ -1,45 +1,43 @@
 package com.tdp.main.controller.newmodel;
 
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.sdk.views.Menu.TopMenuView;
 import com.tdp.main.R;
-import com.tdp.main.activity.NewModelActivity;
-
-import butterknife.BindView;
+import com.tdp.main.activity.CreateAvatarActivity;
+import com.tdp.main.controller.listener.OnCreateAvatarListener;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ReadyController {
-    @BindView(R.id.tv_ready_go)
-    TextView tvReadyGo;
-    private NewModelActivity context;
-    private String TAG="SelectSexController";
 
-    public ReadyController(NewModelActivity context) {
+    private Context context;
+    private OnCreateAvatarListener listener;
+
+    public ReadyController(CreateAvatarActivity context, OnCreateAvatarListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
-    public void initView(RelativeLayout group) {
-        group.removeAllViews();
-        View v = LayoutInflater.from(context).inflate(R.layout.item_newmodel_ready, group);
+    /***
+     * 展示准备拍照页面
+     * @param view
+     */
+    public void show(RelativeLayout view) {
+        view.removeAllViews();
+        View v = LayoutInflater.from(context).inflate(R.layout.item_newmodel_ready, view);
         ButterKnife.bind(this, v);
-        Log.e("ououou",context.TAG+TAG+"这里是拍照指引步骤！");
     }
 
-    @OnClick({TopMenuView.CLICK_LEFT, R.id.tv_ready_go})
+    @OnClick({R.id.ibtn_back, R.id.tv_ready_go})
     public void onClick(View view) {
         switch (view.getId()) {
-            case TopMenuView.CLICK_LEFT:
-                context.step1();
+            case R.id.ibtn_back:
+                listener.onTakePhotoReadyListener(false);
                 break;
             case R.id.tv_ready_go:
-                context.step3();
+                listener.onTakePhotoReadyListener(true);
                 break;
         }
     }

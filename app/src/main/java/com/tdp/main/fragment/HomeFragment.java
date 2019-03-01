@@ -2,7 +2,6 @@ package com.tdp.main.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -19,9 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.faceunity.zip4j.core.ZipFile;
-import com.faceunity.zip4j.exception.ZipException;
-import com.google.gson.Gson;
 import com.sdk.api.WebUcenterApi;
 import com.sdk.api.entity.MirrorEntity;
 import com.sdk.api.entity.UserInfoEntity;
@@ -34,23 +30,24 @@ import com.sdk.net.msg.WebMsg;
 import com.sdk.views.dialog.Toast;
 import com.tdp.base.BaseFragment;
 import com.tdp.main.R;
-import com.tdp.main.activity.FigureActivity;
-import com.tdp.main.activity.NewModelActivity;
-import com.tdp.main.agl.AvatarService;
-import com.tdp.main.agl.FURenderer;
+import com.tdp.main.activity.CreateAvatarActivity;
 import com.tdp.main.utils.MiscUtil;
+
 import java.io.File;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
 import static com.sdk.core.Globals.BASE_API;
 
 public class HomeFragment extends BaseFragment {
+
+    public static final String TAG = "FRAGMENT_HOME";
 
     @BindView(R.id.img_home_camera)
     ImageView imgHomeCamera;
@@ -70,14 +67,14 @@ public class HomeFragment extends BaseFragment {
     LinearLayout tvHomeCommonweal;
     @BindView(R.id.tv_home_downloading)
     TextView tvHomeDownloading;
-    @BindView(R.id.tv_home_loading)
-    TextView tvHomeLoading;
-    @BindView(R.id.main_gl_surface)
-    GLSurfaceView mGLSurfaceView;
+//    @BindView(R.id.tv_home_loading)
+//    TextView tvHomeLoading;
+//    @BindView(R.id.main_gl_surface)
+//    GLSurfaceView mGLSurfaceView;
     @BindView(R.id.tv_error)
     TextView tvError;
     private final int IMAGE_REQUEST_CODE = 0x102;//请求码
-    AvatarService avatarService;
+//    AvatarService avatarService;
     boolean oneNote = true;
     boolean canClick=false;
     //别人的
@@ -194,64 +191,49 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         };
-        //过滤长度
-
-  /*      InputFilter inputFilterLength = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
-                 Log.e("ououou",charSequence.toString()+" "+edtHomeDollname.getText().length());
-                if (edtHomeDollname.getText().length() > 9) {
-                    if (oneNote) {
-                        oneNote = false;
-                        android.widget.Toast.makeText(getContext(), "十个字符以内哦~", Toast.LENGTH_SHORT).show();
-                    }
-                    return charSequence.subSequence(0,9);
-                } else return null;
-            }
-        };*/
         edtHomeDollname.setFilters(new InputFilter[]{inputFilterFace});
-        checkFileAndLoadModel();
+//        checkFileAndLoadModel();
     }
 
 
-    public void checkFileAndLoadModel() {
-        String url = CacheDataService.getLoginInfo().getUserInfo().getMirror().getUrl();
-        Log.e("ououou", "Mirror url:" + url);
-        if (url != null && url.length() != 0) {//判断有没有生成人偶
-            if (!checkFile()) {
-                mGLSurfaceView.setVisibility(View.GONE);
-                downloadFile();
-                return;
-            }
-        }
-
-        // 创建化身服务
-        createAvatarService();
-    }
+//    public void checkFileAndLoadModel() {
+//        String url = CacheDataService.getLoginInfo().getUserInfo().getMirror().getUrl();
+//        Log.e("ououou", "Mirror url:" + url);
+//        if (url != null && url.length() != 0) {//判断有没有生成人偶
+//            if (!checkFile()) {
+//                mGLSurfaceView.setVisibility(View.GONE);
+//                downloadFile();
+//                return;
+//            }
+//        }
+//
+//        // 创建化身服务
+//        createAvatarService();
+//    }
 
     /***
      * 创建化身服务
      */
-    private void createAvatarService(){
-
-        tvHomeLoading.setVisibility(View.VISIBLE);
-        mGLSurfaceView.setVisibility(View.VISIBLE);
-
-        avatarService = new AvatarService(mGLSurfaceView, getContext(), new FURenderer.OnLoadBodyListener() {
-            @Override
-            public void onLoadBodyCompleteListener() {
-                Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //  LOADING=true;
-                        tvHomeLoading.setVisibility(View.GONE);
-                        avatarService.setHadLoad(true);
-                        canClick=true;
-                    }
-                });
-            }
-        });
-    }
+//    private void createAvatarService(){
+//
+//        tvHomeLoading.setVisibility(View.VISIBLE);
+//        mGLSurfaceView.setVisibility(View.VISIBLE);
+//
+//        avatarService = new AvatarService(mGLSurfaceView, getContext(), new FURenderer.OnLoadBodyListener() {
+//            @Override
+//            public void onLoadBodyCompleteListener() {
+//                Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //  LOADING=true;
+//                        tvHomeLoading.setVisibility(View.GONE);
+//                        avatarService.setHadLoad(true);
+//                        canClick=true;
+//                    }
+//                });
+//            }
+//        });
+//    }
 
     /***
      * 检查文件
@@ -266,14 +248,17 @@ public class HomeFragment extends BaseFragment {
         return file.exists();
     }
 
-    private void downloadFile() {
+    private void downloadFile(String mirrorUrl) {
 
         tvHomeDownloading.setVisibility(View.VISIBLE);
-        tvHomeLoading.setVisibility(View.GONE);
 
         UserInfoEntity userInfo = CacheDataService.getLoginInfo().getUserInfo();
-        final String finalFilePathPrefix = userInfo.getAccount()+"_"+CacheDataService.getLoginInfo().getLoginTime();
-        final String mirrorUrl = BASE_API + userInfo.getMirror().getUrl();
+      //  final String finalFilePathPrefix = userInfo.getAccount()+"_"+CacheDataService.getLoginInfo().getLoginTime();
+       // final String mirrorUrl = BASE_API + userInfo.getMirror().getUrl();
+
+
+
+
         Log.e("ououou", "url:" + mirrorUrl);
         final String locaPath = Globals.DIR_CACHE_BUNDLE + finalFilePathPrefix + ".zip";
 
@@ -351,28 +336,28 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (avatarService != null)
-            avatarService.getmCameraRenderer().onDestroy();
+//        if (avatarService != null)
+//            avatarService.getmCameraRenderer().onDestroy();
     }
 
     @OnClick({R.id.img_home_camera, R.id.img_home_file, R.id.tv_home_figure, R.id.tv_home_story, R.id.tv_home_phiz, R.id.tv_home_vr, R.id.tv_home_commonweal, R.id.tv_error})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_home_camera:
-                jumpToNewModelActivity(NewModelActivity.FROM_CAMARA);
+                //jumpToNewModelActivity(CreateAvatarActivity.FROM_CAMARA);
                 break;
             case R.id.img_home_file:
-                jumpToNewModelActivity(NewModelActivity.FROM_FILE);
+                //jumpToNewModelActivity(CreateAvatarActivity.FROM_FILE);
                 break;
             case R.id.tv_home_figure:
-                if(canClick) {
-                    canClick=false;
-                    if (avatarService != null) {
-                        avatarService.setHadLoad(false);
-                        avatarService.getmCameraRenderer().onDestroy();
-                    }
-                    startActivity(new Intent(getActivity(), FigureActivity.class));
-                }
+//                if(canClick) {
+//                    canClick=false;
+//                    if (avatarService != null) {
+//                        avatarService.setHadLoad(false);
+//                        avatarService.getmCameraRenderer().onDestroy();
+//                    }
+//                    startActivity(new Intent(getActivity(), FigureActivity.class));
+//                }
                 break;
             case R.id.tv_home_story:
                 break;
@@ -383,25 +368,25 @@ public class HomeFragment extends BaseFragment {
             case R.id.tv_home_commonweal:
                 break;
             case R.id.tv_error:
-                checkFileAndLoadModel();
+//                checkFileAndLoadModel();
                 tvError.setVisibility(View.GONE);
                 break;
         }
     }
 
     private void jumpToNewModelActivity(int tag) {
-        Intent intent = new Intent(getActivity(), NewModelActivity.class);
-        intent.putExtra(NewModelActivity.TAG, tag);
+        Intent intent = new Intent(getActivity(), CreateAvatarActivity.class);
+        intent.putExtra(CreateAvatarActivity.TAG, tag);
         startActivity(intent);
     }
 
 
-    public AvatarService getAvatarService() {
-        return avatarService;
-    }
+//    public AvatarService getAvatarService() {
+//        return avatarService;
+//    }
 
-    public TextView getTvHomeLoading() {
-        return tvHomeLoading;
-    }
+//    public TextView getTvHomeLoading() {
+//        return tvHomeLoading;
+//    }
 
 }

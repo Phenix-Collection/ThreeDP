@@ -1,6 +1,7 @@
 package com.tdp.main.controller.newmodel;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,10 +20,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.faceunity.constant.Constant;
+import com.faceunity.utils.BitmapUtil;
 import com.sdk.core.Globals;
 import com.sdk.utils.StatusBarUtil;
 import com.tdp.main.R;
-import com.tdp.main.activity.NewModelActivity;
+import com.tdp.main.activity.CreateAvatarActivity;
+import com.tdp.main.controller.listener.OnCreateAvatarListener;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -50,7 +54,6 @@ public class PhotoController {
     TextView tvPhotoGo;
     @BindView(R.id.surfaceView)
     SurfaceView surfaceView;
-    private NewModelActivity context;
     private Camera mCamera;
     private SurfaceHolder mSurfaceHolder;
     private Boolean ifFlash = false;
@@ -59,20 +62,26 @@ public class PhotoController {
     private int picture_w, picture_h;
     private String TAG = "PhotoController";
 
-    public PhotoController(NewModelActivity context) {
+    private Activity context;
+    private OnCreateAvatarListener listener;
+
+    public PhotoController(Activity context, OnCreateAvatarListener listener) {
         this.context = context;
-        Log.e("ououou",context.TAG+TAG+"这里是拍照步骤！");;
+        this.listener = listener;
     }
 
-    public void initView(RelativeLayout group) {
-        group.removeAllViews();
-        View v = LayoutInflater.from(context).inflate(R.layout.item_newmodel_photo, group);
+    /***
+     * 展示图片拍照界面
+     * @param view
+     */
+    public void show(RelativeLayout view) {
+        view.removeAllViews();
+        View v = LayoutInflater.from(context).inflate(R.layout.item_newmodel_photo, view);
         ButterKnife.bind(this, v);
         init();
     }
 
     private void init() {
-        StatusBarUtil.setStatusBarColor(context, R.color.colorWhite);
         mSurfaceHolder = surfaceView.getHolder();
         mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         mSurfaceHolder.addCallback(new SurfaceHolder.Callback() {
@@ -217,7 +226,7 @@ public class PhotoController {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_photo_back:
-                context.step2();
+                listener.onTakePhotoReadyListener(false);
                 break;
             case R.id.img_photo_flash:
                 flash();
@@ -340,19 +349,19 @@ public class PhotoController {
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
                 //保存
-                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                 Matrix matrix = new Matrix();
                 //后置摄像头旋转图片90度
                 if (cameraPosition == 1) {
                     // Log.e("ou","摄像头"+cameraPosition);
                     matrix.setRotate(getPreviewDegree());
-                    bmp = Bitmap
-                            .createBitmap(bmp, 0, 0, bmp.getWidth(),
-                                    bmp.getHeight(), matrix, true);
+                    bitmap = Bitmap
+                            .createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                                    bitmap.getHeight(), matrix, true);
                 } else {
                     //前置摄像头旋转图片270度并水平翻转
                     // Log.e("ou","摄像头"+cameraPosition);
-                    bmp = turnCurrentLayer(bmp, -1, 1);
+                    bitmap = turnCurrentLayer(bitmap, -1, 1);
                 }
                 //裁剪图片
                 int x = (int) (picture_h * 4.33 / 125);
@@ -360,21 +369,36 @@ public class PhotoController {
                 int width = (int) (picture_h * 116.67 / 125);
                 int height = picture_w * previewView.getHeight() / surfaceView.getHeight();
                 //Log.e("ououou","ou?"+x+" "+y+" "+width+" "+height);
-                bmp = Bitmap.createBitmap(bmp, x, y, width, height);
+                bitmap = Bitmap.createBitmap(bitmap, x, y, width, height);
                 //保存图片
                 BufferedOutputStream bos = null;
                 try {
-                    File dir = new File(Globals.DIR_CACHE_BUNDLE);
-                    if(!dir.exists()) dir.mkdirs();
-                    String filename = "/HET_" + System.currentTimeMillis() + ".jpg";
-                    String path = dir + filename;
-                    bos = new BufferedOutputStream(new FileOutputStream(new File(path)));
+//                    File dir = new File(Globals.DIR_CACHE_BUNDLE);
+//                    File dir = new File(Globals.DIR_CACHE_BUNDLE);
+//                    if(!dir.exists()) dir.mkdirs();
+//                    String filename = "/HET_" + System.currentTimeMillis() + ".jpg";
+//                    String filePath = dir + filename;
+//                    bos = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
                     //压缩图片
-                    bmp.compress(Bitmap.CompressFormat.JPEG, 50, bos);
-                    context.step4(path);
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
 
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+//                    File file = new File(filePath);
+//                    if (!Constant.is_debug || !createAvatarDebug(file)) {
+//                        if (file.exists()) {
+                            //Bitmap bitmap = BitmapUtil.loadBitmap(filePath, 720);
+                            String dir = BitmapUtil.saveBitmap(bitmap, null);
+                            //createAvatar(bitmap, dir);
+                            listener.onFileResult(bitmap, dir);
+                            return;
+//                        }
+//                    }
+
+
+//                    context.step4(path);
+
+
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
                 } finally {
                     if (bos != null) {
                         try {

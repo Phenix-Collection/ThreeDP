@@ -44,7 +44,7 @@
         android:layout_alignParentBottom="true">
 
         <TextView
-            android:id="@+id/tv_selectsex_man"
+            android:id="@+id/tv_male"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/r60_white_btn"
@@ -55,11 +55,11 @@
             android:textSize="@dimen/x14" />
 
         <TextView
-            android:id="@+id/tv_selectsex_woman"
+            android:id="@+id/tv_femal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x14"
-            android:layout_below="@id/tv_selectsex_man"
+            android:layout_below="@id/tv_male"
             android:background="@drawable/r60_white_btn"
             android:gravity="center"
             android:padding="@dimen/x12"
