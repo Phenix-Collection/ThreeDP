@@ -246,11 +246,11 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
     @Override
     public void onFinished(String dir, final AvatarP2A avatarP2A) {
 
-        Log.v("ououou", "准备扫描文件");
+        Log.v("ououou", "准备扫描文件" + dir);
 
         try {
-            String content = new Gson().toJson(avatarP2A);
-
+          //  String content = new Gson().toJson(avatarP2A);
+            Log.v("ououou", "准备扫描文件1" + dir);
             // 压缩文件，并保存到当前目录上
             String zipPath = dir + "bundle.zip";
             MiscUtil.zip(dir, zipPath);
