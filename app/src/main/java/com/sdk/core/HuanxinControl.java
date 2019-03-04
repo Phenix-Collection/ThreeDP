@@ -67,25 +67,27 @@ public class HuanxinControl {
 
             Log.v("HuanxinControl", "登录环信服务器，用户名："+data.getUserInfo().getAccount());
 //            EMClient.getInstance().loginWithToken();
-            EMClient.getInstance().login(data.getUserInfo().getAccount(),"123456",new EMCallBack() {//回调
-                @Override
-                public void onSuccess() {
-                    EMClient.getInstance().groupManager().loadAllGroups();
-                    EMClient.getInstance().chatManager().loadAllConversations();
-                    EMClient.getInstance().chatManager().addMessageListener(msgListener); // 监听消息接收
-                    Log.d("HuanxinControl", "login::onSuccess::登录聊天服务器成功！");
-                }
+            try{
+                EMClient.getInstance().login(data.getUserInfo().getAccount(),"123456",new EMCallBack() {//回调
+                    @Override
+                    public void onSuccess() {
+                        EMClient.getInstance().groupManager().loadAllGroups();
+                        EMClient.getInstance().chatManager().loadAllConversations();
+                        EMClient.getInstance().chatManager().addMessageListener(msgListener); // 监听消息接收
+                        Log.d("HuanxinControl", "login::onSuccess::登录聊天服务器成功！");
+                    }
 
-                @Override
-                public void onProgress(int progress, String status) {
+                    @Override
+                    public void onProgress(int progress, String status) {
 
-                }
+                    }
 
-                @Override
-                public void onError(int code, String message) {
-                    Log.d("HuanxinControl", "环信用户登录失败::" + code + ":" + message);
-                }
-            });
+                    @Override
+                    public void onError(int code, String message) {
+                        Log.d("HuanxinControl", "环信用户登录失败::" + code + ":" + message);
+                    }
+                });
+            }catch (Exception e){}
         }
 
     }

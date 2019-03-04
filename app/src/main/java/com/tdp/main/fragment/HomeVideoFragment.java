@@ -44,6 +44,8 @@ import butterknife.OnClick;
 
 public class HomeVideoFragment extends BaseFragment {
 
+	public static final String TAG = "FRAGMENT_HOME_VIDEO";
+
 	@BindView(R.id.id_refresh)
 	PullToRefreshLayout refreshPRl;
 	@BindView(R.id.id_content)

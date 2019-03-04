@@ -5,6 +5,7 @@ import android.content.Context;
 import com.faceunity.constant.ColorConstant;
 import com.faceunity.core.FUP2ARenderer;
 import com.faceunity.core.P2AClientWrapper;
+import com.faceunity.web.OkHttpUtils;
 
 /**
  * ahtor: super_link
@@ -18,6 +19,7 @@ public class Fup2aController {
 
     private Fup2aController(Context context){
         this.context = context;
+        OkHttpUtils.initOkHttpUtils(OkHttpUtils.initOkHttpClient(context));
         FUP2ARenderer.initFURenderer(context);
         ColorConstant.init(context);
         P2AClientWrapper.setupData(context);

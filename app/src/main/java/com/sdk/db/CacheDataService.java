@@ -1,10 +1,13 @@
 package com.sdk.db;
 
+import com.faceunity.constant.AvatarConstant;
+import com.faceunity.entity.AvatarP2A;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.sdk.api.entity.LoginInfoEntity;
+import com.tdp.main.R;
 import com.tdp.main.entity.FriendInfoEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,7 @@ public class CacheDataService {
 	private static final String KEY_LOGIN_INFOS = "LOGIN_INFOS";
 	private static List<FriendInfoEntity> friends = new ArrayList<>();
 	private static LoginInfoEntity loginInfo;
-
+	private static AvatarP2A avatarP2A;
 
 	/***
 	 * 获取好友信息
@@ -84,11 +87,55 @@ public class CacheDataService {
 		}
 	}
 
+	/***
+	 * 获取用户化身表
+	 * @return
+	 */
+	public static AvatarP2A getAvatarP2A(){
+		return avatarP2A;
+	}
+
+	/***
+	 * 保存登录信息
+	 * @param avatarP2A
+	 */
+	public static void saveAvatarP2A(AvatarP2A avatarP2A){
+
+		CacheDataService.avatarP2A = avatarP2A;
+		LoginInfoEntity loginInfo = CacheDataService.getLoginInfo();
+		loginInfo.getUserInfo().setMirror_value(new Gson().toJson(avatarP2A));
+		CacheDataService.saveLoginInfo(loginInfo);
+	}
+
+	/***
+	 * 获取登录信息
+	 * @return
+	 */
 	public static LoginInfoEntity getLoginInfo(){
 		if(loginInfo == null){
 			loginInfo = new Gson().fromJson(BaseDataService.getValueByString(KEY_LOGIN_INFO), LoginInfoEntity.class);
+			createAvatarForLoginInfo(loginInfo);
 		}
 		return loginInfo;
+	}
+
+	/***
+	 * 根据用户信息获取化身
+	 * @param loginInfo
+	 */
+	private static void createAvatarForLoginInfo(LoginInfoEntity loginInfo){
+		try{
+			if(loginInfo != null){
+				avatarP2A = new Gson().fromJson(loginInfo.getUserInfo().getMirror_value(), AvatarP2A.class);
+			}
+		}catch (Exception e){}
+
+		// 如果转换失败的话创建一个默认的
+		if(avatarP2A == null){
+			avatarP2A = new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy, "head_1/head.bundle",
+					AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy), 2, 0);
+		}
+
 	}
 
 	/***

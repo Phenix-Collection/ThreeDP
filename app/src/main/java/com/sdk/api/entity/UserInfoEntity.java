@@ -22,6 +22,10 @@ public class UserInfoEntity {
     private String phoneNumber; // 手机号码
     private String registerIp; // 注册IP
     private int security; // 是否保密
+
+    /** 用户模型数据 */
+    private String mirror_value;
+
     private MirrorEntity mirror; // 用户模型
 
     public MirrorEntity getMirror() {
@@ -144,5 +148,15 @@ public class UserInfoEntity {
         this.registerIp = registerIp;
     }
 
+    public String getRealName() {
+        return realName;
+    }
 
+    public String getMirror_value() {
+        return mirror_value;
+    }
+
+    public void setMirror_value(String mirror_value) {
+        this.mirror_value = mirror_value;
+    }
 }

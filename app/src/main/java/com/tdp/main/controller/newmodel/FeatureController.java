@@ -13,7 +13,7 @@ import com.sdk.db.CacheDataService;
 import com.sdk.views.Menu.TopMenuView;
 import com.sdk.views.dialog.Loading;
 import com.tdp.main.R;
-import com.tdp.main.activity.NewModelActivity;
+import com.tdp.main.activity.CreateAvatarActivity;
 import com.tdp.main.utils.MiscUtil;
 
 import java.io.File;
@@ -28,12 +28,12 @@ public class FeatureController {
     ImageView imgFeatureFeature;
     @BindView(R.id.tv_register_go)
     TextView tvRegisterGo;
-    private NewModelActivity context;
+    private CreateAvatarActivity context;
     private String filepath;
     private String TAG="FeatureCotroller";
     private boolean one_time=true;
 
-    public FeatureController(NewModelActivity context,String filepath) {
+    public FeatureController(CreateAvatarActivity context, String filepath) {
         this.filepath=filepath;
         this.context = context;
         Log.e("ououou",context.TAG+TAG+"这里是查看特征图片并确定步骤！");;
@@ -55,7 +55,7 @@ public class FeatureController {
     public void onClick(View view) {
         switch (view.getId()) {
             case TopMenuView.CLICK_LEFT:
-                context.deleteTempFile();
+                //context.deleteTempFile();
                 break;
             case R.id.tv_register_go:
                 uploadFile();

@@ -23,9 +23,6 @@ import com.sdk.views.listview.HorizontalListView;
 import com.tdp.base.BaseActivity;
 import com.tdp.main.R;
 import com.tdp.main.adapter.FigureAdapter;
-import com.tdp.main.agl.AvatarConstant;
-import com.tdp.main.agl.AvatarService;
-import com.tdp.main.agl.FURenderer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -71,7 +68,7 @@ public class FigureActivity extends BaseActivity{
     @BindView(R.id.tv_cloth)
     public TextView currentIndex;
 
-    AvatarService avatarService;
+//    AvatarService avatarService;
     public String[] MEI_BODY_BUNDLE_ARRAY = {"none", "b_01.bundle", "b_02.bundle", "b_03.bundle", "b_04.bundle"};
     public int[] MEI_BODY_RES_ARRAY = {R.mipmap.ic_delete_all, R.mipmap.b_01, R.mipmap.b_02, R.mipmap.b_03, R.mipmap.b_04};
 
@@ -98,68 +95,68 @@ public class FigureActivity extends BaseActivity{
 //        hairPosition = Integer.parseInt(mirror.getHats());
 
         // 初始化道具适配器
-        propAdapter = new FigureAdapter(this);
-        propHsv.setAdapter(propAdapter);
-
-        if(mirror.getSex() == 1){
-            propAdapter.setDatas(AvatarConstant.CLOTHES_BOY_BUNDLE, AvatarConstant.CLOTHES_BOY_RES);
-        } else {
-            propAdapter.setDatas(AvatarConstant.CLOTHES_GIRL_BUNDLE, AvatarConstant.CLOTHES_GIRL_RES);
-        }
-
-        avatarService= new AvatarService(showGl, this, new FURenderer.OnLoadBodyListener() {
-            @Override
-            public void onLoadBodyCompleteListener() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadingTv.setVisibility(View.GONE);
-                        avatarService.setHadLoad(true);
-                        canBack=true;
-                    }
-                });
-            }
-        });
-
-        // listener
-        propHsv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String bundleName = (String) propAdapter.getItem(position);
-
-
-
-                switch (currentIndex.getId()){
-                    case R.id.tv_cloth: // 衣服
-                        Log.v("FigureActivity" , "选择了衣服：" + bundleName);
-
-                        clothesPosition = position;
-                        avatarService.getNowAvatarP2A().setClothesIndex(position);
-                        avatarService.reLoadAvatar();
-                        //propAdapter.notifyDataSetChanged();
-                        break;
-                    case R.id.tv_glass: // 眼镜（暂无）
-                        Log.v("FigureActivity" , "选择了眼镜：" + bundleName);
-
-                        glassesPosition = position;
-                        break;
-                    case R.id.tv_hair: // 发型
-                        Log.v("FigureActivity" , "选择了发型：" + bundleName);
-
-                        hairPosition = position;
-                        avatarService.getNowAvatarP2A().setHairIndex(position);
-                        avatarService.reLoadAvatar();
-                        //propAdapter.notifyDataSetChanged();
-                        break;
-                    case R.id.tv_suit: // 套装（暂无）
-                        Log.v("FigureActivity" , "选择了套装：" + bundleName);
-
-                        decorationPosition = position;
-                        break;
-                }
-
-            }
-        });
+//        propAdapter = new FigureAdapter(this);
+//        propHsv.setAdapter(propAdapter);
+//
+//        if(mirror.getSex() == 1){
+//            propAdapter.setDatas(AvatarConstant.CLOTHES_BOY_BUNDLE, AvatarConstant.CLOTHES_BOY_RES);
+//        } else {
+//            propAdapter.setDatas(AvatarConstant.CLOTHES_GIRL_BUNDLE, AvatarConstant.CLOTHES_GIRL_RES);
+//        }
+//
+//        avatarService= new AvatarService(showGl, this, new FURenderer.OnLoadBodyListener() {
+//            @Override
+//            public void onLoadBodyCompleteListener() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        loadingTv.setVisibility(View.GONE);
+//                        avatarService.setHadLoad(true);
+//                        canBack=true;
+//                    }
+//                });
+//            }
+//        });
+//
+//        // listener
+//        propHsv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String bundleName = (String) propAdapter.getItem(position);
+//
+//
+//
+//                switch (currentIndex.getId()){
+//                    case R.id.tv_cloth: // 衣服
+//                        Log.v("FigureActivity" , "选择了衣服：" + bundleName);
+//
+//                        clothesPosition = position;
+//                        avatarService.getNowAvatarP2A().setClothesIndex(position);
+//                        avatarService.reLoadAvatar();
+//                        //propAdapter.notifyDataSetChanged();
+//                        break;
+//                    case R.id.tv_glass: // 眼镜（暂无）
+//                        Log.v("FigureActivity" , "选择了眼镜：" + bundleName);
+//
+//                        glassesPosition = position;
+//                        break;
+//                    case R.id.tv_hair: // 发型
+//                        Log.v("FigureActivity" , "选择了发型：" + bundleName);
+//
+//                        hairPosition = position;
+//                        avatarService.getNowAvatarP2A().setHairIndex(position);
+//                        avatarService.reLoadAvatar();
+//                        //propAdapter.notifyDataSetChanged();
+//                        break;
+//                    case R.id.tv_suit: // 套装（暂无）
+//                        Log.v("FigureActivity" , "选择了套装：" + bundleName);
+//
+//                        decorationPosition = position;
+//                        break;
+//                }
+//
+//            }
+//        });
     }
 
     @Override
@@ -175,67 +172,67 @@ public class FigureActivity extends BaseActivity{
     @OnClick({R.id.tv_cloth, R.id.tv_glass, R.id.tv_hair, R.id.tv_suit, R.id.id_back, R.id.tv_save})
     public void onClick(View view){
 
-        if(currentIndex != null){
-            currentIndex.setTextColor(this.getResources().getColor(R.color.voip_interface_text_color));
-        }
-
-        switch (view.getId()){
-            case R.id.tv_cloth: // 衣服
-                if(currentIndex == null || currentIndex.getId() != R.id.tv_cloth){
-                    if(mirror.getSex() == 1){ // 男装衣服
-                        propAdapter.setDatas(AvatarConstant.CLOTHES_BOY_BUNDLE, AvatarConstant.CLOTHES_BOY_RES);
-                    } else { // 女装衣服
-                        propAdapter.setDatas(AvatarConstant.CLOTHES_GIRL_BUNDLE, AvatarConstant.CLOTHES_GIRL_RES);
-                    }
-                }
-                currentIndex = (TextView) view;
-                setMargins(propSolidV, this.getResources().getDimensionPixelSize(R.dimen.x4), 0, 0, 0);
-                break;
-            case R.id.tv_glass: // 眼镜（暂无）
-                if(currentIndex == null || currentIndex.getId() != R.id.tv_glass){
-//                    propAdapter.setDatas(AvatarConstant.);
-                    propAdapter.setDatas(null, null);
-                }
-                currentIndex = (TextView) view;
-                setMargins(propSolidV, this.getResources().getDimensionPixelOffset(R.dimen.x65), 0, 0, 0);
-                break;
-            case R.id.tv_hair: // 发型
-                if(currentIndex == null || currentIndex.getId() != R.id.tv_hair){
-                    if(mirror.getSex() == 1) { // 男生发型
-                        propAdapter.setDatas(AvatarConstant.HAIR_BOY_BUNDLE, AvatarConstant.HAIR_BOY_RES);
-                    } else { // 女生发型
-                        propAdapter.setDatas(AvatarConstant.HAIR_GIRL_BUNDLE, AvatarConstant.HAIR_GIRL_RES);
-                    }
-                }
-                currentIndex = (TextView) view;
-                setMargins(propSolidV, this.getResources().getDimensionPixelSize(R.dimen.x126), 0, 0, 0);
-                break;
-            case R.id.tv_suit: // 套装（暂无）
-                if(currentIndex == null || currentIndex.getId() != R.id.tv_suit){
-//                    propAdapter.setDatas(AvatarConstant.);
-                    propAdapter.setDatas(null, null);
-                }
-                currentIndex = (TextView) view;
-                setMargins(propSolidV, this.getResources().getDimensionPixelSize(R.dimen.x186), 0, 0, 0);
-                break;
-            case R.id.id_back:
-                if(canBack){
-                    avatarService.getmCameraRenderer().onDestroy();
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra(MainActivity.TAG, MainActivity.FROM_FIGURE);
-                    startActivity(intent);
-                    finish();
-                }
-                break;
-            case R.id.tv_save:
-                save();
-                break;
-        }
-
-        if(currentIndex != null){
-            currentIndex.setTextColor(this.getResources().getColor(R.color.colorBlack));
-        }
+//        if(currentIndex != null){
+//            currentIndex.setTextColor(this.getResources().getColor(R.color.voip_interface_text_color));
+//        }
+//
+//        switch (view.getId()){
+//            case R.id.tv_cloth: // 衣服
+//                if(currentIndex == null || currentIndex.getId() != R.id.tv_cloth){
+//                    if(mirror.getSex() == 1){ // 男装衣服
+//                        propAdapter.setDatas(AvatarConstant.CLOTHES_BOY_BUNDLE, AvatarConstant.CLOTHES_BOY_RES);
+//                    } else { // 女装衣服
+//                        propAdapter.setDatas(AvatarConstant.CLOTHES_GIRL_BUNDLE, AvatarConstant.CLOTHES_GIRL_RES);
+//                    }
+//                }
+//                currentIndex = (TextView) view;
+//                setMargins(propSolidV, this.getResources().getDimensionPixelSize(R.dimen.x4), 0, 0, 0);
+//                break;
+//            case R.id.tv_glass: // 眼镜（暂无）
+//                if(currentIndex == null || currentIndex.getId() != R.id.tv_glass){
+////                    propAdapter.setDatas(AvatarConstant.);
+//                    propAdapter.setDatas(null, null);
+//                }
+//                currentIndex = (TextView) view;
+//                setMargins(propSolidV, this.getResources().getDimensionPixelOffset(R.dimen.x65), 0, 0, 0);
+//                break;
+//            case R.id.tv_hair: // 发型
+//                if(currentIndex == null || currentIndex.getId() != R.id.tv_hair){
+//                    if(mirror.getSex() == 1) { // 男生发型
+//                        propAdapter.setDatas(AvatarConstant.HAIR_BOY_BUNDLE, AvatarConstant.HAIR_BOY_RES);
+//                    } else { // 女生发型
+//                        propAdapter.setDatas(AvatarConstant.HAIR_GIRL_BUNDLE, AvatarConstant.HAIR_GIRL_RES);
+//                    }
+//                }
+//                currentIndex = (TextView) view;
+//                setMargins(propSolidV, this.getResources().getDimensionPixelSize(R.dimen.x126), 0, 0, 0);
+//                break;
+//            case R.id.tv_suit: // 套装（暂无）
+//                if(currentIndex == null || currentIndex.getId() != R.id.tv_suit){
+////                    propAdapter.setDatas(AvatarConstant.);
+//                    propAdapter.setDatas(null, null);
+//                }
+//                currentIndex = (TextView) view;
+//                setMargins(propSolidV, this.getResources().getDimensionPixelSize(R.dimen.x186), 0, 0, 0);
+//                break;
+//            case R.id.id_back:
+//                if(canBack){
+//                    avatarService.getmCameraRenderer().onDestroy();
+//                    Intent intent = new Intent(this, MainActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                    intent.putExtra(MainActivity.TAG, MainActivity.FROM_FIGURE);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//                break;
+//            case R.id.tv_save:
+//                save();
+//                break;
+//        }
+//
+//        if(currentIndex != null){
+//            currentIndex.setTextColor(this.getResources().getColor(R.color.colorBlack));
+//        }
     }
 
     public static void setMargins(View v, int l, int t, int r, int b) {

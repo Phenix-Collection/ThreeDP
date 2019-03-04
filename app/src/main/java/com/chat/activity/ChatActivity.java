@@ -32,8 +32,6 @@ public class ChatActivity extends FragmentActivity {
         super.onCreate(arg0);
         init();
 
-
-
         setContentView(R.layout.em_activity_chat);
         activityInstance = this;
         //get user id or group id

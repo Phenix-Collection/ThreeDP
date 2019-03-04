@@ -1,19 +1,31 @@
 package com.tdp.main.activity;
 
 import android.content.Intent;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GestureDetectorCompat;
+import android.util.DisplayMetrics;
+import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.faceunity.constant.AvatarConstant;
+import com.faceunity.core.AvatarHandle;
+import com.faceunity.core.FUP2ARenderer;
+import com.faceunity.core.P2ACore;
+import com.faceunity.entity.AvatarP2A;
+import com.faceunity.renderer.CameraRenderer;
 import com.sdk.api.entity.LoginInfoEntity;
 import com.sdk.db.CacheDataService;
 import com.tdp.base.BaseFragmentActivity;
@@ -22,12 +34,16 @@ import com.tdp.main.fragment.HomeVideoFragment;
 import com.tdp.main.fragment.HomeFragment;
 import com.tdp.main.fragment.HomeFriendFragment;
 import com.tdp.main.fragment.HomeUCenterFragment;
+
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author:zlcai
@@ -36,116 +52,61 @@ import butterknife.ButterKnife;
  * @detail: 主Activity, 所有功能的入口
  **/
 
-public class MainActivity extends BaseFragmentActivity implements View.OnClickListener {
-    public ArrayList<Fragment> fragments = new ArrayList<Fragment>(); // 所有活动
-    //
-    @BindView(R.id.id_content)
-    FrameLayout contentFl; // 内容
-    @BindViews({R.id.id_home, R.id.id_reportwage, R.id.id_what1, R.id.id_ucenter})
-    List<LinearLayout> tabRbs; // 底部五个功能按钮
+public class MainActivity extends BaseFragmentActivity implements CameraRenderer.OnCameraRendererStatusListener, View.OnClickListener {
+
+    private List<Fragment> fragments = new ArrayList<>();
+    private CreateAvatarActivity newModelFragment;
     @BindViews({R.id.id_home_icon, R.id.id_reportwage_icon, R.id.id_what1_icon, R.id.id_ucenter_icon})
     List<ImageView> menuIcons;
     @BindViews({R.id.id_home_label, R.id.id_reportwage_label, R.id.id_what1_label, R.id.id_ucenter_label})
     List<TextView> menuLabels;
+    private int menuNormalIcons[] = {R.drawable.icon_home_n, R.drawable.icon_video_n, R.drawable.icon_interactive_n, R.drawable.icon_my_n};
+    private int menuFocusIcons[] = {R.drawable.icon_home_f, R.drawable.icon_video_f, R.drawable.icon_interactive_f, R.drawable.icon_my_f};
+    @BindView(R.id.id_content)
+    FrameLayout contentFl; // 内容
+
     public static final int FROM_FIGURE = 1;
     public static final int FROM_NEWMODEL = 2;
     public static final int FROM_LOGIN = 3;
     public static final int FROM_CHANGUSER = 4;
 
-    private int menuNormalIcons[] = {R.drawable.icon_home_n, R.drawable.icon_video_n, R.drawable.icon_interactive_n, R.drawable.icon_my_n};
-    private int menuFocusIcons[] = {R.drawable.icon_home_f, R.drawable.icon_video_f, R.drawable.icon_interactive_f, R.drawable.icon_my_f};
-    private int currIndex = 0; // 当前页下标
     private boolean ISEXIT = false;
     private Handler handler;
     public static final String TAG = "MainActivity";
-    HomeFragment homeFragment;
-    HomeUCenterFragment homeUCenterFragment;
+
+    //
+    @BindView(R.id.main_gl_surface)
+    GLSurfaceView mainGlSurfaceView;
+    @BindView(R.id.loading_v)
+    View loadingV;
+
+    //
+    private CameraRenderer mCameraRenderer;
+    private FUP2ARenderer mFUP2ARenderer;
+    private P2ACore mP2ACore;
+    private AvatarHandle mAvatarHandle;
+//    private List<AvatarP2A> mAvatarP2As;
+    private AvatarP2A mShowAvatarP2A;
+    private GestureDetectorCompat mGestureDetector;
+    private ScaleGestureDetector mScaleGestureDetector;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //PermissionsUtil.checkAndRequestPermissions(this);
         ButterKnife.bind(this);
         checkLogin();
-       // init();
     }
 
     @Override
     protected void onNewIntent(final Intent intent) {
         super.onNewIntent(intent);
-        homeFragment = (HomeFragment) fragments.get(0);
-        homeUCenterFragment = (HomeUCenterFragment) fragments.get(3);
-        homeFragment.getTvHomeLoading().setVisibility(View.VISIBLE);
-        switch (intent.getIntExtra(TAG, 0)) {
-            case FROM_FIGURE:
-                if (homeFragment.getAvatarService() != null) {
-                    homeFragment.getAvatarService().setAvatar();
-                    homeFragment.getAvatarService().getmCameraRenderer().onCreate();
-                }
-                break;
-            case FROM_NEWMODEL:
-                if (homeFragment.getAvatarService() != null)
-                    homeFragment.getAvatarService().loadAvatar();
-                break;
-            case FROM_LOGIN:
-            case FROM_CHANGUSER:
-                if (homeFragment.getAvatarService() != null)
-                    homeFragment.getAvatarService().loadAvatar();
-                homeFragment.updateDollName();
-                homeUCenterFragment.refreshUI();
-                break;
-        }
-
-       /* if(fragments.size()==0){
-            Log.e("ououou",TAG+"onNewIntent 第一次打开app从登录过来的情况");
-        }else {
-            Observable.create(new ObservableOnSubscribe<Integer>() {
-                @Override
-                public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-                    Thread.sleep(200);
-                    emitter.onComplete();
-                }
-            }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Integer>() {
-                @Override
-                public void onSubscribe(Disposable d) {
-                }
-
-                @Override
-                public void onNext(Integer integer) {
-
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                }
-
-                @SuppressLint("ClickableViewAccessibility")
-                @Override
-                public void onComplete() {
-                    if(intent.getBooleanExtra("need_reload_modal",false)){
-                        Log.e("ououou",TAG+"onNewIntent 需要重新加载home！");
-                        HomeFragment homeFragment = (HomeFragment) fragments.get(0);
-                        homeFragment.getAvatarService().getmCameraRenderer().onCreate();
-                        //  homeFragment.onStart();
-                        //homeFragment.loadModel();
-                    }
-                    if(intent.getBooleanExtra("need_update_home",false)){
-                        Toast.makeText(MainActivity.this, "刷新模型中...", Toast.LENGTH_SHORT).show();
-                        Log.e("ououou",TAG+"onNewIntent 需要更新home！");
-                        HomeFragment homeFragment = (HomeFragment) fragments.get(0);
-                        homeFragment.checkFileAndLoadModel(true);
-                    }
-//                    if(intent.getBooleanExtra("need_update_ucenter",false)){
-//                        Log.e("ououou",TAG+"onNewIntent 需要更新UCenter！");
-//                        HomeUCenterFragment homeUCenterFragment= (HomeUCenterFragment) fragments.get(3);
-//                        homeUCenterFragment.refreshUI();
-//                    }
-                }
-            });
-        }*/
     }
 
+    /***
+     * 检查是否登录
+     */
     private void checkLogin(){
         LoginInfoEntity data = CacheDataService.getLoginInfo();
         if (data != null) {
@@ -157,7 +118,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         }
     }
 
-
+    private int touchMode = 0;
     private void init() {
 
         handler = new Handler() {
@@ -174,42 +135,168 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         fragments.add(new HomeVideoFragment());
         fragments.add(new HomeFriendFragment());
         fragments.add(new HomeUCenterFragment());
-        // ====== 初始化功能图标
-        pageToIndex(currIndex);
-        // listener
-        for (int i = 0; i < tabRbs.size(); i++) {
-            tabRbs.get(i).setTag(i);
-            tabRbs.get(i).setOnClickListener(this);
-        }
-    }
 
-    private void pageToIndex(int index) {
-        if (fragments == null || fragments.size() <= index) return;
-        menuLabels.get(currIndex).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryBlack, null));
-        menuIcons.get(currIndex).setImageResource(menuNormalIcons[currIndex]);
-        menuLabels.get(index).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorBlack, null));
-        menuIcons.get(index).setImageResource(menuFocusIcons[index]);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        //-------设置所有的按钮为正常
-        if (!fragments.get(index).isAdded()) {
-            if (this.currIndex == index) {
-                transaction.add(contentFl.getId(), fragments.get(index)).commitAllowingStateLoss();
-            } else {
-                transaction.hide(fragments.get(this.currIndex)).add(contentFl.getId(), fragments.get(index)).commitAllowingStateLoss();
+        newModelFragment = new CreateAvatarActivity();
+
+        // ====== 初始化功能图标
+        showFragment(0 );
+
+        //
+        mainGlSurfaceView.setEGLContextClientVersion(3);
+        mCameraRenderer = new CameraRenderer(this, mainGlSurfaceView);
+        mCameraRenderer.setOnCameraRendererStatusListener(this);
+        mainGlSurfaceView.setRenderer(mCameraRenderer);
+        mainGlSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
+        // 初始化数据
+//        mAvatarP2As = getAllAvatarP2As();
+        mShowAvatarP2A = CacheDataService.getAvatarP2A();
+//        mDBHelper = new DBHelper(this);
+//        mAvatarP2As = mDBHelper.getAllAvatarP2As();
+//        mShowAvatarP2A = mAvatarP2As.get(mShowIndex = 0);
+
+        mFUP2ARenderer = new FUP2ARenderer(this);
+        mP2ACore = new P2ACore(this, mFUP2ARenderer);
+        mFUP2ARenderer.setFUCore(mP2ACore);
+        mAvatarHandle = mP2ACore.createAvatarHandle();
+        mAvatarHandle.setAvatar(getShowAvatarP2A(), new Runnable() {
+            @Override
+            public void run() {
+                checkGuide();
             }
-        } else {
-            transaction.hide(fragments.get(this.currIndex)).show(fragments.get(index)).commitAllowingStateLoss();
-        }
-        this.currIndex = index;
+        });
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        final int screenWidth = metrics.widthPixels;
+        final int screenHeight = metrics.heightPixels;
+        mGestureDetector = new GestureDetectorCompat(this, new GestureDetector.SimpleOnGestureListener() {
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                if (showIndex == 0) {
+//                    return fragments.get(0).onSingleTapUp(e);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                if (touchMode != 1) {
+                    touchMode = 1;
+                    return false;
+                }
+                float rotDelta = -distanceX / screenWidth;
+                float translateDelta = distanceY / screenHeight;
+                mAvatarHandle.setRotDelta(rotDelta);
+                mAvatarHandle.setTranslateDelta(translateDelta);
+                return distanceX != 0 || translateDelta != 0;
+            }
+        });
+
+        mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                if (touchMode != 2) {
+                    touchMode = 2;
+                    return false;
+                }
+                float scale = detector.getScaleFactor() - 1;
+                mAvatarHandle.setScaleDelta(scale);
+                return scale != 0;
+            }
+        });
     }
 
     @Override
-    public void onClick(View v) {
-        int index = Integer.parseInt(v.getTag().toString());
-        if (index < 4 && currIndex != index) {
-            pageToIndex(index);
+    public boolean onTouchEvent(MotionEvent event) {
+        if (showIndex == 0) {
+            if (event.getPointerCount() == 2) {
+                mScaleGestureDetector.onTouchEvent(event);
+            } else if (event.getPointerCount() == 1)
+                mGestureDetector.onTouchEvent(event);
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void checkGuide() {
+        if (loadingV.getVisibility() == View.VISIBLE) {
+            loadingV.post(new Runnable() {
+                @Override
+                public void run() {
+                    loadingV.setVisibility(View.GONE);
+                }
+            });
         }
     }
+/*
+
+    public List<AvatarP2A> getAllAvatarP2As() {
+        List<AvatarP2A> p2AS = new ArrayList<>();
+        p2AS.add(0, new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy, "head_1/head.bundle",
+                AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy), 2, 0));
+        p2AS.add(1, new AvatarP2A(AvatarP2A.style_art, R.drawable.head_2_female, AvatarP2A.gender_girl, "head_2/head.bundle",
+                AvatarConstant.hairBundle("head_2", AvatarP2A.gender_girl), 7, 0));
+        return p2AS;
+    }
+*/
+
+    @OnClick({R.id.id_home, R.id.ll_video, R.id.ll_friend, R.id.id_ucenter})
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.id_home:
+                showFragment(0);
+                break;
+            case R.id.ll_video:
+                showFragment(1);
+                break;
+            case R.id.ll_friend:
+                showFragment(2);
+                break;
+            case R.id.id_ucenter:
+                showFragment(3);
+                break;
+        }
+    }
+
+    private Integer showIndex;
+    private Fragment showFragment;
+
+    /***
+     * 展示界面
+     * @param index 界面下标
+     */
+    public void showFragment(int index){
+        // 当前已经展示该界面，无需重复展示
+        if(showFragment != null && showIndex == index){
+            return;
+        }
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment tempFramgnet = fragments.get(index);
+
+        if(!tempFramgnet.isAdded()){
+            transaction.add(contentFl.getId(), tempFramgnet);
+        }
+        if(showFragment != null){
+            transaction.hide(showFragment);
+        }
+
+        // 还原未选中菜单按钮状态
+        if(showIndex != null){
+            menuLabels.get(showIndex).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryBlack, null));
+            menuIcons.get(showIndex).setImageResource(menuNormalIcons[showIndex]);
+        }
+        // 改变选中菜单按钮状态
+        menuLabels.get(index).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorBlack, null));
+        menuIcons.get(index).setImageResource(menuFocusIcons[index]);
+
+        // 展示当前选中页面并提交
+        transaction.show(tempFramgnet).commitAllowingStateLoss();
+        showFragment = tempFramgnet;
+        showIndex = index;
+    }
+
 
 
     //重写返回键
@@ -232,5 +319,48 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         } else {
             super.exitApp();
         }
+    }
+
+    public AvatarP2A getShowAvatarP2A() {
+        return mShowAvatarP2A;
+    }
+
+    @Override
+    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+        mFUP2ARenderer.onSurfaceCreated();
+    }
+
+    @Override
+    public void onSurfaceChanged(GL10 gl, int width, int height) {
+
+    }
+
+    @Override
+    public int onDrawFrame(byte[] cameraNV21Byte, int cameraTextureId, int cameraWidth, int cameraHeight) {
+        mCameraRenderer.refreshLandmarks(mP2ACore.getLandmarksData());
+        return mFUP2ARenderer.onDrawFrame(cameraNV21Byte, cameraTextureId, cameraWidth, cameraHeight);
+    }
+
+    @Override
+    public void onSurfaceDestroy() {
+        mFUP2ARenderer.onSurfaceDestroyed();
+    }
+
+    @Override
+    public void onCameraChange(int currentCameraType, int cameraOrientation) {
+        mFUP2ARenderer.onCameraChange(currentCameraType, cameraOrientation);
+    }
+
+    /***
+     * 放大人偶
+     * @param isMin
+     */
+    public void setGLSurfaceViewSize(boolean isMin) {
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mainGlSurfaceView.getLayoutParams();
+        params.width = isMin ? getResources().getDimensionPixelSize(R.dimen.x208) : RelativeLayout.LayoutParams.MATCH_PARENT;
+        params.height = isMin ? getResources().getDimensionPixelSize(R.dimen.x290) : RelativeLayout.LayoutParams.MATCH_PARENT;
+        params.topMargin = isMin ? getResources().getDimensionPixelSize(R.dimen.x158) : 0;
+        mainGlSurfaceView.setLayoutParams(params);
+        //mGroupPhotoRound.setVisibility(isMin ? View.VISIBLE : View.GONE);
     }
 }

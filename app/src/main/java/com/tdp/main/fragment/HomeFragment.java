@@ -31,6 +31,7 @@ import com.sdk.views.dialog.Toast;
 import com.tdp.base.BaseFragment;
 import com.tdp.main.R;
 import com.tdp.main.activity.CreateAvatarActivity;
+import com.tdp.main.constant.CreateAvatarTypeEnum;
 import com.tdp.main.utils.MiscUtil;
 
 import java.io.File;
@@ -235,64 +236,7 @@ public class HomeFragment extends BaseFragment {
 //        });
 //    }
 
-    /***
-     * 检查文件
-     * @return
-     */
-    private boolean checkFile() {
-        String finalFilePathPrefix = CacheDataService.getLoginInfo().getUserInfo().getAccount()+"_"+CacheDataService.getLoginInfo().getLoginTime();
-        File file = new File(Globals.DIR_CACHE_BASE + "bundle");
-        if (!file.exists()) file.mkdirs();
-        String filepath = Globals.DIR_CACHE_BUNDLE + finalFilePathPrefix;
-        file = new File(filepath);
-        return file.exists();
-    }
 
-    private void downloadFile(String mirrorUrl) {
-
-        tvHomeDownloading.setVisibility(View.VISIBLE);
-
-        UserInfoEntity userInfo = CacheDataService.getLoginInfo().getUserInfo();
-      //  final String finalFilePathPrefix = userInfo.getAccount()+"_"+CacheDataService.getLoginInfo().getLoginTime();
-       // final String mirrorUrl = BASE_API + userInfo.getMirror().getUrl();
-
-
-
-
-        Log.e("ououou", "url:" + mirrorUrl);
-        final String locaPath = Globals.DIR_CACHE_BUNDLE + finalFilePathPrefix + ".zip";
-
-        HttpRequest.instance().download(mirrorUrl, getContext(), locaPath, new OnProgressListener() {
-            @Override
-            public void onProgress(long currentBytes, long contentLength) {
-                int progress = (int) (currentBytes * 100 / contentLength);
-                tvHomeDownloading.setText("准备中 " + progress + "%");
-            }
-
-            @Override
-            public void onFinished(WebMsg webMsg) {
-//                Log.e("ououou", "OnProgressListener::onFinished::" + new Gson().toJson(webMsg));
-                tvHomeDownloading.setVisibility(View.GONE);
-                if (webMsg.isSuccess()) {
-                    tvError.setVisibility(View.GONE);
-                    try {
-                        ZipFile zipFile = new ZipFile(locaPath);//ZipFile是用来解压文件的工具
-                        zipFile.extractAll(Globals.DIR_CACHE_BUNDLE + finalFilePathPrefix);//解压所有的文件
-                        MiscUtil.deleteFile(new File(locaPath));
-
-                        // 创建化身服务
-                        createAvatarService();
-
-                    } catch (ZipException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    tvError.setVisibility(View.VISIBLE);
-                    webMsg.showMsg(getContext());
-                }
-            }
-        });
-    }
 
     private void updateDollName(final String dollname) {
         MirrorEntity mirror = CacheDataService.getLoginInfo().getUserInfo().getMirror();
@@ -345,9 +289,10 @@ public class HomeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.img_home_camera:
                 //jumpToNewModelActivity(CreateAvatarActivity.FROM_CAMARA);
+                jumpToCreateAvatarActivity(CreateAvatarTypeEnum.CAMARA);
                 break;
             case R.id.img_home_file:
-                //jumpToNewModelActivity(CreateAvatarActivity.FROM_FILE);
+                jumpToCreateAvatarActivity(CreateAvatarTypeEnum.FILE);
                 break;
             case R.id.tv_home_figure:
 //                if(canClick) {
@@ -374,10 +319,11 @@ public class HomeFragment extends BaseFragment {
         }
     }
 
-    private void jumpToNewModelActivity(int tag) {
-        Intent intent = new Intent(getActivity(), CreateAvatarActivity.class);
-        intent.putExtra(CreateAvatarActivity.TAG, tag);
-        startActivity(intent);
+    private void jumpToCreateAvatarActivity(CreateAvatarTypeEnum type) {
+        Intent intent = new Intent();
+        intent.setClass(this.getContext(), CreateAvatarActivity.class);
+        intent.putExtra("type", type);
+        this.getActivity().startActivity(intent);
     }
 
 

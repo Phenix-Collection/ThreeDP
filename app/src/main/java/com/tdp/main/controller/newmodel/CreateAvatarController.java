@@ -36,8 +36,8 @@ public class CreateAvatarController {
 
     @BindView(R.id.iv_loading)
     ImageView loadingIv;
-    @BindView(R.id.tv)
-    TextView tv_note;
+    @BindView(R.id.scan_tv)
+    TextView scanTv;
     private String filepath;
     private String TAG = "CreateAvatarController";
     private float poisson_weight_v = 1f;
@@ -94,6 +94,8 @@ public class CreateAvatarController {
      * @param style 风格
      */
     private void createAvatar(final String dir, final int gender, final int style) {
+
+        scanTv.setText("扫描照片中,请稍后...");
         final long createAvatarTime = System.nanoTime();
 
         // 上传图片到服务器解析
@@ -112,6 +114,9 @@ public class CreateAvatarController {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
+
+                    Log.v("ououou", "扫描完成！！！！");
+
                     long onResponseTime = System.nanoTime();
                     byte[] bytes = response.body().bytes();
                     long downloadTime = System.nanoTime();
@@ -126,6 +131,12 @@ public class CreateAvatarController {
 
                     // 将化身保存到数据库中
                     if (avatarP2A != null) {
+                        context.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                scanTv.setText("正在同步模型,请稍后...");
+                            }
+                        });
                         listener.onFinished(dir, avatarP2A);
 
 

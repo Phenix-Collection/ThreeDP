@@ -12,6 +12,7 @@ import com.faceunity.utils.FileUtil;
 import com.faceunity.utils.ToastUtil;
 import com.google.gson.Gson;
 import com.sdk.api.WebUcenterApi;
+import com.sdk.api.entity.LoginInfoEntity;
 import com.sdk.core.Globals;
 import com.sdk.db.CacheDataService;
 import com.sdk.net.HttpRequest;
@@ -20,6 +21,7 @@ import com.sdk.net.listener.OnResultListener;
 import com.sdk.net.msg.WebMsg;
 import com.sdk.utils.StatusBarUtil;
 import com.sdk.utils.imgeloader.ImageLoadActivity;
+import com.sdk.views.dialog.Toast;
 import com.tdp.base.BaseActivity;
 import com.tdp.main.R;
 import com.tdp.main.constant.CreateAvatarTypeEnum;
@@ -58,7 +60,7 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
 
 
     // 模型生成方式（1：摄像头， 2：文件）
-    private int type;
+    private CreateAvatarTypeEnum type;
 
     public int sex;
 
@@ -67,14 +69,18 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_model);
         ButterKnife.bind(this);
+        init();
     }
+
+
 
     /***
      * 初始化
      */
     private void init(){
         // 获取化身创建方式
-        type = getIntent().getIntExtra("type", CreateAvatarTypeEnum.FILE.getIndex());
+        //type = getIntent().getIntExtra("type", CreateAvatarTypeEnum.FILE.getIndex());
+        type = (CreateAvatarTypeEnum) getIntent().getSerializableExtra("type");
 
         // 选择性别
         selectSexController = new SelectSexController(this, this);
@@ -86,7 +92,7 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
      * 设置创建化身的方式（1：拍照， 2：文件选择）
      * @param type
      */
-    public void setType(int type) {
+    public void setType(CreateAvatarTypeEnum type) {
         this.type = type;
     }
 
@@ -198,7 +204,7 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
     public void onSexResult(int sex) {
         this.sex = sex;
 
-        if(type == CreateAvatarTypeEnum.FILE.getIndex()){ // 从相册里选择照片作为化身
+        if(type == CreateAvatarTypeEnum.FILE){ // 从相册里选择照片作为化身
             Intent intent = new Intent();
             intent.setClass(this, ImageLoadActivity.class);
             this.startActivityForResult(intent, 1);
@@ -239,13 +245,16 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
 
     @Override
     public void onFinished(String dir, final AvatarP2A avatarP2A) {
+
+        Log.v("ououou", "准备扫描文件");
+
         try {
             String content = new Gson().toJson(avatarP2A);
 
             // 压缩文件，并保存到当前目录上
             String zipPath = dir + "bundle.zip";
             MiscUtil.zip(dir, zipPath);
-
+            Log.v("ououou", "保存扫描文件" + zipPath);
             // 保存到服务器
             Map<String, String> map = new HashMap<>();
             map.put("file", "uploadFile");
@@ -253,14 +262,14 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
                 @Override
                 public void onProgress(long currentBytes, long contentLength) {
                     int progress = (int) (currentBytes * 100 / contentLength);
-                    Log.e("ououou", "上传进度" + progress);
+                    Log.v("ououou", "上传进度" + progress);
                 }
 
                 @Override
                 public void onFinished(WebMsg webMsg) {
-                    Log.e("ououou", new Gson().toJson(webMsg));
+                    Log.v("ououou", new Gson().toJson(webMsg));
                     if (webMsg.isSuccess()) {
-                        Log.e("ououou", TAG + "上传成功,更新模型数据！");
+                        Log.v("ououou", TAG + "上传成功,更新模型数据！");
                         final String url = new Gson().fromJson(webMsg.getData(), String.class);
                         avatarP2A.setServer_url(url);
 
@@ -275,6 +284,7 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
 
 
         }catch (Exception e){
+            Log.v("ououou", "发生错误：" + e.toString());
             e.printStackTrace();
         }
 
@@ -286,15 +296,19 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
      */
     private void saveMirrorToServer(final AvatarP2A avatarP2A){
 
+        final String avatarP2sStr = new Gson().toJson(avatarP2A);
         //
-        HttpRequest.instance().doPost(HttpRequest.create(WebUcenterApi.class).editMirror(new Gson().toJson(avatarP2A)), new OnResultListener() {
+        HttpRequest.instance().doPost(HttpRequest.create(WebUcenterApi.class).editMirror(avatarP2sStr), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if(webMsg.isSuccess()){
                     // 替换本地化身
+                    CacheDataService.saveAvatarP2A(avatarP2A);
 
+                    // 返回主页
+                    finish();
                 } else {
-
+                    Toast.show(CreateAvatarActivity.this, "替身创建失败！", android.widget.Toast.LENGTH_SHORT);
                 }
             }
         });
