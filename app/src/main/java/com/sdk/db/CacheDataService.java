@@ -96,7 +96,7 @@ public class CacheDataService {
 	}
 
 	/***
-	 * 保存登录信息
+	 * 保存化身信息
 	 * @param avatarP2A
 	 */
 	public static void saveAvatarP2A(AvatarP2A avatarP2A){

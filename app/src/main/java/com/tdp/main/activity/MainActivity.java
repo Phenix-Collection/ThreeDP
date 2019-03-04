@@ -36,6 +36,8 @@ import com.tdp.main.fragment.HomeFriendFragment;
 import com.tdp.main.fragment.HomeUCenterFragment;
 
 import org.jetbrains.annotations.Nullable;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -78,7 +80,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
     @BindView(R.id.main_gl_surface)
     GLSurfaceView mainGlSurfaceView;
     @BindView(R.id.loading_v)
-    View loadingV;
+    TextView loadingV;
 
     //
     private CameraRenderer mCameraRenderer;
@@ -150,7 +152,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
         // 初始化数据
 //        mAvatarP2As = getAllAvatarP2As();
-        mShowAvatarP2A = CacheDataService.getAvatarP2A();
+//        mShowAvatarP2A = CacheDataService.getAvatarP2A();
 //        mDBHelper = new DBHelper(this);
 //        mAvatarP2As = mDBHelper.getAllAvatarP2As();
 //        mShowAvatarP2A = mAvatarP2As.get(mShowIndex = 0);
@@ -159,12 +161,6 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         mP2ACore = new P2ACore(this, mFUP2ARenderer);
         mFUP2ARenderer.setFUCore(mP2ACore);
         mAvatarHandle = mP2ACore.createAvatarHandle();
-        mAvatarHandle.setAvatar(getShowAvatarP2A(), new Runnable() {
-            @Override
-            public void run() {
-                checkGuide();
-            }
-        });
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         final int screenWidth = metrics.widthPixels;
@@ -205,6 +201,55 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
                 return scale != 0;
             }
         });
+
+        loadAvatarP2A();
+    }
+
+    /***
+     * 加载化身数据
+     */
+    private void loadAvatarP2A(){
+
+        // 获取AvatarP2A对象
+        mShowAvatarP2A = CacheDataService.getAvatarP2A();
+
+        // 判断化身对象中是否配置，如果有是否已下载。
+        String bundleDir = mShowAvatarP2A.getBundleDir();
+        if(bundleDir != null){
+            File file = new File(bundleDir);
+            if(file.exists()){ // 判断Bundle是否存在，如果不存在说明没有下载
+                setMShowAvatarP2A();
+            } else { // 本地文件不存在，尝试从网上下载
+                loadingV.setText("正在准备同步形象！");
+                String url = mShowAvatarP2A.getServer_url();
+
+
+
+            }
+        } else { // 当Bundle目录为空时，说明用户还没有配置过
+            setMShowAvatarP2A();
+        }
+
+    }
+
+    /***
+     * 设置并显示化身数据
+     */
+    private void setMShowAvatarP2A(){
+
+        mAvatarHandle.setAvatar(getShowAvatarP2A(), new Runnable() {
+            @Override
+            public void run() {
+                if (loadingV.getVisibility() == View.VISIBLE) {
+                    loadingV.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingV.setVisibility(View.GONE);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -217,28 +262,6 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         }
         return super.onTouchEvent(event);
     }
-
-    public void checkGuide() {
-        if (loadingV.getVisibility() == View.VISIBLE) {
-            loadingV.post(new Runnable() {
-                @Override
-                public void run() {
-                    loadingV.setVisibility(View.GONE);
-                }
-            });
-        }
-    }
-/*
-
-    public List<AvatarP2A> getAllAvatarP2As() {
-        List<AvatarP2A> p2AS = new ArrayList<>();
-        p2AS.add(0, new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy, "head_1/head.bundle",
-                AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy), 2, 0));
-        p2AS.add(1, new AvatarP2A(AvatarP2A.style_art, R.drawable.head_2_female, AvatarP2A.gender_girl, "head_2/head.bundle",
-                AvatarConstant.hairBundle("head_2", AvatarP2A.gender_girl), 7, 0));
-        return p2AS;
-    }
-*/
 
     @OnClick({R.id.id_home, R.id.ll_video, R.id.ll_friend, R.id.id_ucenter})
     @Override

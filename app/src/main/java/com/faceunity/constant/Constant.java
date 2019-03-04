@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public abstract class Constant {
     public static final int NANO_IN_ONE_MILLI_SECOND = 1000000;
 
-    public static final String APP_NAME = "FUP2AArtDemo";
+    public static final String APP_NAME = "LifeStory";
     public static boolean is_debug = false;
     public static final int is_q = 1;
 
@@ -21,7 +21,7 @@ public abstract class Constant {
     public static String web_url_check = "";
 
     public static final String filePath = Environment.getExternalStoragePublicDirectory("")
-            + File.separator + "LifeStory" + File.separator + APP_NAME + File.separator;
+             + File.separator + APP_NAME + File.separator;
 
     public static final String DICMFilePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath();
     public static final String photoFilePath;

@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RelativeLayout;
+
+import com.faceunity.constant.Constant;
 import com.faceunity.entity.AvatarP2A;
 import com.faceunity.utils.BitmapUtil;
 import com.faceunity.utils.FileUtil;
@@ -243,18 +245,20 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
 
     }
 
+
+    private AvatarP2A avatarP2A;
+    private String dir;
+
     @Override
     public void onFinished(String dir, final AvatarP2A avatarP2A) {
 
-        Log.v("ououou", "准备扫描文件" + dir);
+        this.avatarP2A = avatarP2A;
+        this.dir = dir;
 
         try {
-          //  String content = new Gson().toJson(avatarP2A);
-            Log.v("ououou", "准备扫描文件1" + dir);
             // 压缩文件，并保存到当前目录上
-            String zipPath = dir + "bundle.zip";
+            String zipPath = Constant.filePath + "bundle.zip";
             MiscUtil.zip(dir, zipPath);
-            Log.v("ououou", "保存扫描文件" + zipPath);
             // 保存到服务器
             Map<String, String> map = new HashMap<>();
             map.put("file", "uploadFile");
@@ -262,14 +266,11 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
                 @Override
                 public void onProgress(long currentBytes, long contentLength) {
                     int progress = (int) (currentBytes * 100 / contentLength);
-                    Log.v("ououou", "上传进度" + progress);
                 }
 
                 @Override
                 public void onFinished(WebMsg webMsg) {
-                    Log.v("ououou", new Gson().toJson(webMsg));
                     if (webMsg.isSuccess()) {
-                        Log.v("ououou", TAG + "上传成功,更新模型数据！");
                         final String url = new Gson().fromJson(webMsg.getData(), String.class);
                         avatarP2A.setServer_url(url);
 
@@ -281,13 +282,9 @@ public class CreateAvatarActivity extends BaseActivity implements OnCreateAvatar
                     }
                 }
             }, map, new File(zipPath));
-
-
         }catch (Exception e){
-            Log.v("ououou", "发生错误：" + e.toString());
             e.printStackTrace();
         }
-
     }
 
     /***

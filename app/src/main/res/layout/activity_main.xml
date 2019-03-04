@@ -179,11 +179,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/icon_weibo"/>-->
-    <View
+    <TextView
         android:id="@+id/loading_v"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/guide_img"
+        android:background="@drawable/app_bg"
+        android:gravity="center"
+        android:textSize="@dimen/x16"
+        android:textColor="@color/colorBlack"
+        android:text="生活故事，属于你的故事！"
         android:elevation="@dimen/x50"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </RelativeLayout>
