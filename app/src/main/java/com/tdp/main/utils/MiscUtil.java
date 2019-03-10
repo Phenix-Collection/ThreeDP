@@ -129,20 +129,27 @@ public class MiscUtil {
             } else {
                 //返回一个文件或空阵列。
                 File[] entries = fileOrDirectory.listFiles();
+
                 for (int i = 0; i < entries.length; i++) {
+
+                    Log.v("ououou", entries[i].getAbsolutePath());
                     // 递归压缩，更新curPaths
                     zipFileOrDirectory(out, entries[i], "");
                 }
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
+            Log.v("ououou", "" + ex.toString());
+        }catch (Exception e){
+
+        }finally {
             //关闭输出流
             if (out != null) {
                 try {
                     out.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
+                    Log.v("ououou", "" + ex.toString());
                 }
             }
         }
@@ -751,15 +758,20 @@ public class MiscUtil {
         });
     }
 
-    public static void unzip(String filePath, InputStream zipIn, String location) throws IOException {
+    /***
+     *
+     * @param filePath 压缩文件的路径
+     * @param location
+     * @throws IOException
+     */
+    public static void unzip(String filePath, String location) throws IOException {
         Logger(TAG, "unzip filePath " + filePath + " location " + location, true);
         try {
             File f = new File(location);
             if(!f.isDirectory()) {
                 f.mkdirs();
             }
-            ZipInputStream zin = filePath.equals("") ? new ZipInputStream(zipIn)
-                    : new ZipInputStream(new FileInputStream(filePath));
+            ZipInputStream zin = new ZipInputStream(new FileInputStream(filePath));
             try {
                 ZipEntry ze = null;
                 byte[] buffer = new byte[1024];

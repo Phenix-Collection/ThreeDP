@@ -323,7 +323,7 @@ public class HomeFragment extends BaseFragment {
         Intent intent = new Intent();
         intent.setClass(this.getContext(), CreateAvatarActivity.class);
         intent.putExtra("type", type);
-        this.getActivity().startActivity(intent);
+        this.getActivity().startActivityForResult(intent, 1);
     }
 
 

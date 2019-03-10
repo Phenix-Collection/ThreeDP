@@ -2,31 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_all"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/app_bg">
+    android:layout_height="match_parent">
 
 
 
     <!--模型容器-->
-    <android.opengl.GLSurfaceView
-        android:id="@+id/gl_show"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/id_menu"
-        android:layout_above="@id/ll_change_style"
-        android:layout_alignParentRight="true">
-
-    </android.opengl.GLSurfaceView>
-
-    <TextView
-        android:id="@+id/tv_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/ll_change_style"
-        android:gravity="center"
-        android:text="载入中..."
-        android:textColor="@color/colorWhite"
-        android:visibility="visible" />
 
     <RelativeLayout
         android:background="#99ffffff"
@@ -74,7 +54,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
@@ -136,16 +116,21 @@
                 android:layout_below="@id/tv_cloth"
                 android:layout_marginLeft="@dimen/x5"
                 android:background="@drawable/sign_underline" />
-        </RelativeLayout>
+        </RelativeLayout>-->
+
+        <com.sdk.views.listview.HorizontalListView
+            android:id="@+id/hsv_menu"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x60"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorThinBlack" />
 
-
         <com.sdk.views.listview.HorizontalListView
-            android:id="@+id/hsv_prop"
+            android:id="@+id/hsv_content"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x60"/>

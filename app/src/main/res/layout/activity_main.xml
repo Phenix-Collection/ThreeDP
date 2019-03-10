@@ -189,5 +189,5 @@
         android:textColor="@color/colorBlack"
         android:text="生活故事，属于你的故事！"
         android:elevation="@dimen/x50"
-        android:visibility="visible" />
+        android:visibility="gone" />
 </RelativeLayout>

@@ -137,7 +137,7 @@ public class CreateAvatarController {
                                 scanTv.setText("正在同步模型,请稍后...");
                             }
                         });
-                        listener.onFinished(dir, avatarP2A);
+                        listener.onFinished(avatarP2A);
 
 
 //                        mDBHelper.insertHistory(avatarP2A);

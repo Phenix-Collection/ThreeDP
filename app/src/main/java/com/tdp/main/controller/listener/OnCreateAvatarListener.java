@@ -33,6 +33,6 @@ public interface OnCreateAvatarListener {
      * 完成创建
      * @param avatarP2A
      */
-    public void onFinished(String dir, AvatarP2A avatarP2A);
+    public void onFinished(AvatarP2A avatarP2A);
 
 }

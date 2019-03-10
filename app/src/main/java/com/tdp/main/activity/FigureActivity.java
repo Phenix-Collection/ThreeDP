@@ -1,13 +1,11 @@
 package com.tdp.main.activity;
 
-import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.sdk.api.WebUcenterApi;
@@ -34,9 +32,9 @@ import butterknife.OnClick;
  */
 public class FigureActivity extends BaseActivity{
 
-    @BindView(R.id.gl_show)
-    GLSurfaceView showGl;
-    @BindView(R.id.tv_loading)
+//    @BindView(R.id.gl_show)
+//    GLSurfaceView showGl;
+//    @BindView(R.id.tv_loading)
     TextView loadingTv;
     @BindView(R.id.hsv_prop)
     HorizontalListView propHsv;
@@ -75,7 +73,7 @@ public class FigureActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_figure);
+        setContentView(R.layout.fragment_editface_figure);
         ButterKnife.bind(this);
         init();
     }

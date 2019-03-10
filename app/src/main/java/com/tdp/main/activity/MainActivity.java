@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -20,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.faceunity.constant.AvatarConstant;
+import com.faceunity.constant.Constant;
 import com.faceunity.core.AvatarHandle;
 import com.faceunity.core.FUP2ARenderer;
 import com.faceunity.core.P2ACore;
@@ -28,16 +29,19 @@ import com.faceunity.entity.AvatarP2A;
 import com.faceunity.renderer.CameraRenderer;
 import com.sdk.api.entity.LoginInfoEntity;
 import com.sdk.db.CacheDataService;
+import com.sdk.net.HttpRequest;
+import com.sdk.net.listener.OnProgressListener;
+import com.sdk.net.msg.WebMsg;
 import com.tdp.base.BaseFragmentActivity;
 import com.tdp.main.R;
 import com.tdp.main.fragment.HomeVideoFragment;
 import com.tdp.main.fragment.HomeFragment;
 import com.tdp.main.fragment.HomeFriendFragment;
 import com.tdp.main.fragment.HomeUCenterFragment;
-
+import com.tdp.main.utils.MiscUtil;
 import org.jetbrains.annotations.Nullable;
-
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -46,6 +50,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jmessage.support.google.gson.Gson;
 
 /**
  * @author:zlcai
@@ -213,23 +218,71 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         // 获取AvatarP2A对象
         mShowAvatarP2A = CacheDataService.getAvatarP2A();
 
+        Log.v("ououou", new Gson().toJson(mShowAvatarP2A));
+
         // 判断化身对象中是否配置，如果有是否已下载。
         String bundleDir = mShowAvatarP2A.getBundleDir();
-        if(bundleDir != null){
+        String url = mShowAvatarP2A.getServer_url();
+        if(bundleDir != null && url != null){
             File file = new File(bundleDir);
             if(file.exists()){ // 判断Bundle是否存在，如果不存在说明没有下载
                 setMShowAvatarP2A();
             } else { // 本地文件不存在，尝试从网上下载
-                loadingV.setText("正在准备同步形象！");
-                String url = mShowAvatarP2A.getServer_url();
+                //loadingV.setText("正在准备同步形象！");
+                setMShowAvatarP2A();
 
-
+                // 同步bundle到本地
+               // downloadAvatarP2A(Globals.BASE_API + url, bundleDir);
 
             }
         } else { // 当Bundle目录为空时，说明用户还没有配置过
             setMShowAvatarP2A();
         }
 
+    }
+
+    /***
+     * 下载化身数据到本地
+     */
+    private void downloadAvatarP2A(String url, final String bundleDir){
+
+        loadingV.setText("正在同步信息到本地，请稍后...");
+        final String zipPath = Constant.filePath + System.currentTimeMillis() + ".zip";
+
+        Log.v("ououou", url);
+        HttpRequest.instance().download(url, this, zipPath, new OnProgressListener() {
+            @Override
+            public void onProgress(long currentBytes, long contentLength) {
+                int progress = (int) (currentBytes * 100 / contentLength);
+                loadingV.setText("信息同步中，已完成" + + progress + "%");
+                //tvHomeDownloading.setText("准备中 " + progress + "%");
+            }
+
+            @Override
+            public void onFinished(WebMsg webMsg) {
+                //tvHomeDownloading.setVisibility(View.GONE);
+                if (webMsg.isSuccess()) {
+                    //tvError.setVisibility(View.GONE);
+                    try {
+//                        ZipFile zipFile = new ZipFile(zipPath);//ZipFile是用来解压文件的工具
+//                        zipFile.extractAll(bundleDir);//解压所有的文件
+//                        MiscUtil.deleteFile(new File(zipPath));
+                        loadingV.setText("同步完成，正在准备展示形象。");
+                        MiscUtil.unzip(zipPath, bundleDir);
+//                        // 创建化身服务
+//                        createAvatarService();
+                        setMShowAvatarP2A();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    //tvError.setVisibility(View.VISIBLE);
+                    webMsg.showMsg(MainActivity.this);
+                    loadingV.setText("同步失败，将展示默认形象。");
+                    setMShowAvatarP2A();
+                }
+            }
+        });
     }
 
     /***
@@ -250,6 +303,13 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        loadAvatarP2A();
     }
 
     @Override
